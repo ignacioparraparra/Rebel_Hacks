@@ -1,0 +1,30 @@
+.html {
+    background-color: #123;
+    
+}   
+
+.navbar {
+    display: flex;
+    flex-direction: row;
+    height: 50px;
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+body {
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+.main-container {
+    display: flex;
+    background: url('/frontend/src/assets/lasvegas.jpg');
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+}
