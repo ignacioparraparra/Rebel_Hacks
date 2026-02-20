@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
 import Games from "./pages/Games.jsx";
-import SpinTheWheel from "./pages/SpinTheWheel.jsx";
+import SpinTheWheel from "./pages/games/SpinTheWheel.jsx";
 import ErrorBoundary from "./pages/ErrorBoundary.jsx";
 
 function App() {

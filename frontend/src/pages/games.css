@@ -1,0 +1,30 @@
+.games-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.games-grid {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.game-card {
+    border: 2px solid white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 200px;
+    text-align: center;
+    background-color: #111;
+}
+
+.play-btn {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}

@@ -1,105 +1,18 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/makeapost.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://js.stripe.com/clover/stripe.js" async></script>
+  <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet" />
+  <title>Scholar-Chips</title>
 </head>
+
 <body>
-    <nav class="navbar" aria-label="Primary">
-      <div class="navbar-bg">
-        <div class="home">
-          <a href="#top" class="navbar-left" id="inkoban">
-            <img src="/frontend/src/assets/waow.jpg" height="48px"/>
-            <h1>
-              <b><u>scholarChips</u></b>
-            </h1>
-          </a>
-        </div>
-        <div class="padding"></div>
-        <button
-          class="mybtn navbar-toggler"
-          type="button"
-          aria-label="Toggle navigation"
-          aria-controls="primary-navigation"
-          aria-expanded="false"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="navbar-collapse" id="primary-navigation">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a href="aboutme/" class="mybtn mybtn-nav">Dashboard</a>
-            </li>
-            <li class="nav-item">
-              <a href="blog/" class="mybtn mybtn-nav">Classses</a>
-            </li>
-            <li class="nav-item mybtn-split dropdown">
-              <a href="projects/" class="mybtn">Games</a>
-              <a
-                class="mybtn mybtn-dropdown dropdown-toggle"
-                href="#"
-                role="button"
-                aria-label="Toggle projects menu"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="projects/#websites"></a></li>
-                <li><a class="dropdown-item" href="projects/#programs"></a></li>
-                <li><a class="dropdown-item" href="projects/#writings"></a></li>
-                <li><a class="dropdown-item" href="projects/#other-projects"></a></li>
-              </ul>
-            </li>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
 
-            <li class="nav-item">
-              <a href="links/" class="mybtn mybtn-nav">LINKS</a>
-            </li>
-            <li class="nav-item dropdown mybtn-split">
-              <a href="login/" class="mybtn">LOGIN</a>
-              <a
-                class="mybtn mybtn-dropdown dropdown-toggle"
-                href="#"
-                role="button"
-                aria-label="Toggle other menu"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="other/#philosophies">Philosophies</a></li>
-                <li><a class="dropdown-item" href="other/#faq">FAQ</a></li>
-                <li><a class="dropdown-item" href="other/#guestbook">Guestbook</a></li>
-                <li><hr class="dropdown-divider" /></li>
-                <li>
-                  <a class="dropdown-item" href="settings/">Site Settings</a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-
-    <main>
-        <div class="main-container">
-          <div class="hero-container">
-            <h1>scholarChips</h1>
-            <h2>
-              Absenteeism solved with scholarChips, the revolutionary attendance system that rewards CCSD students for showing up to class.
-            </h2>
-          </div>
-          <div class="info-container">
-
-          </div>
-        </div>
-    </main>
-<footer>
-  <div class="footer-links">
-    <a href="">
-      <img src="/frontend/assets/github.png" height="32px"/>
-    </a>
-  </div>
-</footer>
+</html>
