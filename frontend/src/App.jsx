@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 
+import Navbar from "./components/Navbar.jsx";
 import Home from "./pages/Home.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
 import Games from "./pages/Games.jsx";
@@ -9,6 +10,7 @@ import ErrorBoundary from "./pages/ErrorBoundary.jsx";
 function App() {
   return (
     <>
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/dashboard" element={<Dashboard />} />
@@ -16,6 +18,7 @@ function App() {
         <Route path="/games/spin-the-wheel" element={<SpinTheWheel />} />
         <Route path="*" element={<ErrorBoundary />} />
       </Routes>
+      
     </>
   );
 }
