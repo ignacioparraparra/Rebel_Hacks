@@ -13,6 +13,13 @@ function Games() {
             <button className="play-btn">Play Now</button>
           </Link>
         </div>
+              
+        <div className="game-card">
+            <h3>Spin The Wheel</h3>
+            <Link to="/games/spin-the-wheel">
+            <button className="play-btn">Play Now</button>
+            </Link>
+        </div>
       </div>
     </div>
   );
