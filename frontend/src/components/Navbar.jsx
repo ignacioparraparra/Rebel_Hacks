@@ -16,7 +16,7 @@ function Navbar() {
         {/* `end` on Home means it only highlights on exactly "/",
             not on every page (because every path starts with /) */}
         <NavLink to="/dashboard" className={navClass} end><div className="nav-link-element">Dashboard</div></NavLink>
-        <NavLink to="/games" className={navClass}><div className="nav-link-element">Games</div></NavLink>
+        <NavLink to="/prizes" className={navClass}><div className="nav-link-element">Prizes</div></NavLink>
         <NavLink to="/classes" className={navClass}><div className="nav-link-element">Classes</div></NavLink>
       </div>
 
