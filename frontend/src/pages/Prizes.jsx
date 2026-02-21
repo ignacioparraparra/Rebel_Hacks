@@ -62,6 +62,7 @@ function Prizes() {
       method: "POST",
       body: JSON.stringify({ amount: -item.cost }),
     });
+    console.log(`Purchase: ${item.title} for ${item.cost} chips`);
 
     setChips((prev) => prev - item.cost);
     setError(null);
