@@ -9,7 +9,7 @@ function Navbar() {
   return (
     <nav className="navbar">
       {/* Logo / home link - left side */}
-      <NavLink to="/dashboard" className={navClass} end><h1 className="nav-link-element element-home">scholarChips</h1></NavLink>
+      <NavLink to="/dashboard" className={navClass} end><h1 className="element-home">scholarChips</h1></NavLink>
 
       {/* Page links - center */}
       <div className="navbar-links">

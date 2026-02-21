@@ -24,11 +24,11 @@ function App() {
     <>
         <Navbar />
         <Routes>
-          {/* Full-width pages — intentionally outside Layout */}
+          {/* Full-width pages - intentionally outside Layout */}
           <Route path="/" element={<Landing />} />
           <Route path="/login" element={<Login />} />
 
-          {/* App pages — all share the Layout max-width wrapper */}
+          {/* App pages - all share the Layout max-width wrapper */}
           <Route element={<LayoutRoute />}>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/prizes" element={<Prizes />} />

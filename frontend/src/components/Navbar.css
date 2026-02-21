@@ -1,7 +1,7 @@
 /* global styles*/
 :root {
-    --gold: #ffd700;
-    --gold-light: #ffe44d;
+    --main-color: #002B49;
+    --main-color-light: #2D5B96;
     --font-brand: 'Chela One', system-ui, sans-serif;
     --bg: #FFF;
     --text: #f0f0f0;
@@ -17,7 +17,7 @@
     padding: 0 2rem;
     height: 64px;
     background-color: var(--bg);
-    border-bottom: 2px solid var(--gold);
+    border-bottom: 2px solid var(--main-color);
     position: sticky;
     top: 0;
     z-index: 100;
@@ -26,7 +26,7 @@
 .navbar-brand {
     font-family: var(--font-brand);
     font-size: 1.5rem;
-    color: var(--gold);
+    color: var(--main-color);
     letter-spacing: 1px;
 }
 
@@ -43,13 +43,29 @@
     transition: color 0.2s;
 }
 
+.nav-link-element {
+    color: white;
+    background: var(--main-color);
+    font-size: 0.95rem;
+    border: 2px solid ;
+    border-radius: 8px;
+    padding: 0.8rem 0.8rem;
+    font-weight: 700;
+    transition: color 0.2s, background 0.2s, border-color 0.2s;
+}
+
+.nav-link-element:hover {
+    background: var(--main-color-light);
+    border-color: var(--main-color-light);
+}
+
 .nav-link:hover,
 .nav-link.active {
-    color: var(--gold);
+    color: var(--main-color);
 }
 
 .navbar-login-btn {
-    background: var(--gold);
+    background: var(--main-color);
     color: #111;
     padding: 0.4rem 1.4rem;
     border-radius: 20px;
@@ -59,14 +75,12 @@
 }
 
 .navbar-login-btn:hover {
-    background: var(--gold-light);
+    background: var(--main-color-light);
 }
 
-.element-home {
-    border: 4px solid var(--gold);
-    border-radius: 12px;
+.element-home { /* replace with image */
     padding: 0.5rem 1rem;
-    color: var(--gold);
+    color: var(--main-color);
     font-weight: bold;
     transition: background 0.2s, color 0.2s;
 }

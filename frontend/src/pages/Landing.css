@@ -1,21 +1,26 @@
-/* Landing Page */
+/* - Landing Page - */
 
-.landing-hero {
-  /* fill the full viewport below the navbar */
-  width: 100%;
-  min-height: calc(100vh - 64px);
-
-  /* background image: cover the whole area, stay centred */
+.landing-page {
+  display:flex; 
+  flex-direction: column;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  background-attachment: fixed;
+  align-items: center;
+  width: 100%;
+}
 
+/* - hero -  */
+.landing-hero {
+  width: 100%;
+  min-height: calc(100vh - 64px);
+  /* parallax: the background stays fixed while you scroll over it */
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* semi-transparent dark layer so text pops over the photo */
 .landing-overlay {
   display: flex;
   flex-direction: column;
@@ -26,30 +31,42 @@
   padding: 3rem 2rem;
   width: 100%;
   min-height: calc(100vh - 64px);
-  background: rgba(0, 0, 0, 0.6);
+}
+
+.landing-content {
+  display: inherit;
+  flex-direction: inherit;
+  align-items: inherit;
+  justify-content: inherit;
+  gap: 20px;
+  width: 50%;
+  background-color: rgba(0,0,0,0.6);
+  backdrop-filter: blur(6px);
+  border: 8px solid rgba(255,255,255,0.2);
+  padding: 8rem 2rem;
 }
 
 .landing-logo {
   font-family: var(--font-brand);
-  font-size: 5rem;
-  color: var(--gold);
+  font-size: 5.5rem;
+  color: #fff;
   letter-spacing: 2px;
   margin: 0;
-  text-shadow: 0 2px 24px rgba(0,0,0,0.7);
+  text-shadow: 0 2px 32px rgba(0,0,0,0.8);
 }
 
 .landing-tagline {
-  font-size: 1.25rem;
-  color: var(--text);
-  max-width: 560px;
+  font-size: 1.3rem;
+  color: #e8e8e8;
+  max-width: 520px;
   line-height: 1.7;
   margin: 0;
 }
 
 .landing-cta {
   display: inline-block;
-  background: var(--gold);
-  color: #111;
+  background: var(--main-color);
+  color: #fff;
   padding: 0.85rem 2.8rem;
   border-radius: 30px;
   font-size: 1.1rem;
@@ -60,6 +77,152 @@
 }
 
 .landing-cta:hover {
-  background: var(--gold-light);
+  background: var(--main-color-light);
   transform: scale(1.04);
+}
+
+/* land sections*/
+
+.giganticDiv {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.0) 0%, rgba(0, 0, 0, 0.9) 80%);
+}
+
+.landing-section {
+  padding: 5rem 4rem;
+  text-align: center;
+  width: 960px;
+}
+
+.landing-section h2 {
+  font-family: var(--font-brand);
+  font-size: 2.4rem;
+  color: var(--main-color);
+  margin-bottom: 1.5rem;
+}
+
+.landing-section p {
+  font-size: 1.1rem;
+  color: #333;
+  max-width: 680px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+/* mission */
+.landing-mission {
+  background: #f7f9fc;
+  border-top: 3px solid var(--main-color);
+}
+
+/* why */
+.landing-why {
+  background: #fff;
+}
+
+.landing-cards {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.landing-card {
+  background: #f0f5fb;
+  border: 2px solid var(--main-color);
+  border-radius: 12px;
+  padding: 2rem 1.5rem;
+  width: 240px;
+  text-align: center;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.landing-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--main-color-light);
+}
+
+.landing-card-icon {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.landing-card h3 {
+  color: var(--main-color);
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.landing-card p {
+  font-size: 0.9rem;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* how */
+.landing-how {
+  background: #f7f9fc;
+}
+
+.landing-steps {
+  list-style: none;
+  counter-reset: steps;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  max-width: 600px;
+  margin: 1rem auto 0;
+  padding: 0;
+  text-align: left;
+}
+
+.landing-steps li {
+  counter-increment: steps;
+  display: flex;
+  align-items: flex-start;
+  gap: 1.1rem;
+  font-size: 1.05rem;
+  color: #333;
+  line-height: 1.6;
+}
+
+.landing-steps li::before {
+  content: counter(steps);
+  background: var(--main-color);
+  color: #fff;
+  font-weight: bold;
+  font-size: 0.95rem;
+  min-width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* ── Footer CTA ── */
+.landing-footer-cta {
+  background: var(--main-color);
+  border-top: none;
+}
+
+.landing-footer-cta h2 {
+  color: #fff;
+  margin-bottom: 1.5rem;
+}
+
+.landing-footer-cta .landing-cta {
+  background: #fff;
+  color: var(--main-color);
+}
+
+.landing-footer-cta .landing-cta:hover {
+  background: #e8eef5;
 }
