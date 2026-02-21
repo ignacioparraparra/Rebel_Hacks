@@ -28,4 +28,7 @@ async function createChipTransaction(student_id, school_id, amount) {
             ${amount})`
 }
 
-module.exports = router
+module.exports = {
+    router,
+    createChipTransaction
+}

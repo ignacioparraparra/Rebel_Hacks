@@ -5,7 +5,7 @@ const cors = require('cors')
 const authRoutes = require('./routes/auth.routes.js')
 const studentRoutes = require('./routes/student.routes.js')
 const schoolRoutes = require('./routes/school.routes.js')
-const transactionRoutes = require('./routes/transaction.routes.js')
+const {router: transactionRoutes } = require('./routes/transaction.routes.js')
 
 app.use(express.json())
 app.use(cors({
