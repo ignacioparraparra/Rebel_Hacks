@@ -33,32 +33,36 @@ router.post('/enroll/account', async (req, res) => {
 // UPLOAD CLASS DATA, student id, first_name, last_name, school_id, grade
 router.post('/:school_id/roster', upload.single("roster"), async (req, res) => {
     try {
-        const results = []
-
         if (!req.file) {
             return res.status(400).send('No file uploaded.')
         }
 
         const csvText = req.file.buffer.toString()
+        console.log(csvText)
         const records = parse(csvText, {
             columns: true,
-            skip_empty_lines: true
+            skip_empty_lines: true,
+            trim: true
         })
+
+        let inserted = 0;
+
 
         for (const row of records) {
-            row.student_id,
-            row.first_name,
-            row.last_name
-            row.school_id,
-            row.grade
-            const username = row.first_name + row.last_name + row.student_id
-            await createStudent(student_id, first_name, last_name, school_id, grade, username)
-        }
-        
-        res.json({
-            message: "Roster Processed",
-        })
+            const student_id = Number(row.student_id)
+            const first_name = String(row.first_name || "").trim()
+            const last_name = String(row.last_name || "").trim()
+            const grade = Number(row.grade)
+            const school_id = Number(row.school_id)
+            console.log(last_name)
 
+            const username = `${first_name}${last_name}${student_id}`.toLowerCase()
+
+            await createStudent(student_id, first_name, last_name, school_id, grade, username)
+            inserted++
+        }
+
+        return res.json({ message: "Roster Processed", inserted })
     } catch (err) {
         return res.status(500).json({err:`Server error ${err}`})
     }
