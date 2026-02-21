@@ -34,6 +34,10 @@ router.post('/:school_id/roster', upload.single("roster"), async (req, res) => {
     try {
         const results = []
 
+        if (!req.file) {
+            return res.status(400).send('No file uploaded.')
+        }
+
         fs.createReadStream(req.file.path)
         .pipe(csv())
         .on("data", (data) => results.push(data))
@@ -42,7 +46,7 @@ router.post('/:school_id/roster', upload.single("roster"), async (req, res) => {
             res.status(200).json({message: "File processed", rows: results.length})
         })
     } catch (err) {
-        return res.status(500).json({err:"Server error"})
+        return res.status(500).json({err:`Server error ${err}`})
     }
 })
 
