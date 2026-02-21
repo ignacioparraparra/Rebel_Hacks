@@ -13,7 +13,7 @@ router.post('/chips/:school_id/:student_id', async (req, res) => {
 
     await createChipTransaction(student_id, school_id, amount)
 
-    return res.sendStatus(200)
+    return res.status(200).json({chips_added : amount})
 })
 
 async function createChipTransaction(student_id, school_id, amount) {
