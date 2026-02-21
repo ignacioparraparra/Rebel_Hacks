@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar.jsx";
-import Body from "./Body.jsx";
+import Body from "./pages/Body.jsx";
 import Home from "./pages/Home.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
 import Games from "./pages/Games.jsx";
@@ -22,7 +22,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="*" element={<ErrorBoundary />} />
       </Routes>
-      
+      <Body />
     </>
   );
 }
