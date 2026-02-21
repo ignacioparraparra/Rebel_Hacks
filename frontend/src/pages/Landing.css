@@ -249,7 +249,7 @@
 
 /* how strip */
 
-.landing-how-strip {
+.landing-divdiv-waow {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -258,7 +258,7 @@
   margin-top: 1.5rem;
 }
 
-.landing-how-step {
+.dumbCircle {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -278,14 +278,14 @@
   color: var(--main-color);
 }
 
-.landing-how-step span {
+.dumbCircle span {
   font-family: var(--font-brand);
   font-size: 0.9rem;
   font-weight: 600;
   color: var(--text);
 }
 
-.landing-how-arrow {
+.stupidArrow {
   font-size: 1.2rem;
   color: var(--text-muted);
   margin-bottom: 1.5rem;
@@ -321,8 +321,8 @@
   .landing-section { padding: 3rem 1.5rem; }
   .landing-card { width: 100%; max-width: 320px; }
   .landing-stats-bar { gap: 1.5rem; flex-wrap: wrap; }
-  .landing-how-strip { flex-direction: column; }
-  .landing-how-arrow { transform: rotate(90deg); margin-bottom: 0; }
+  .landing-divdiv-waow { flex-direction: column; }
+  .stupidArrow { transform: rotate(90deg); margin-bottom: 0; }
 }
 
 @media (max-width: 480px) {

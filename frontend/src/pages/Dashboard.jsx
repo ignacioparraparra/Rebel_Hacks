@@ -1,5 +1,6 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { apiFetch, getToken } from "../utils/api";
 import "./Dashboard.css";
 
 const MOCK_ACTIVITY = [
@@ -10,26 +11,27 @@ const MOCK_ACTIVITY = [
   { id: 5, desc: "Daily Attendance",      delta: +50,  time: "Mon, 8:00 AM" },
 ];
 
-const MOCK_STUDENT = { first_name: "Erika", last_name: ":-)", grade: 11, total_chips: 1250, rank: 3 };
-const MOCK_CHIPS = 980;
-
 function Dashboard() {
-  const [student, setStudent] = useState(MOCK_STUDENT);
-  const [chips, setChips] = useState(MOCK_CHIPS);
-  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+  const [student, setStudent] = useState(null);
+  const [chips, setChips] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  // useEffect(() => {
-  //   if (!getToken()) { navigate("/login"); return; }
-  //   Promise.all([apiFetch("/student/info"), apiFetch("/student/chips")])
-  //     .then(async ([infoRes, chipsRes]) => {
-  //       if (!infoRes || !chipsRes) return;
-  //       const info = await infoRes.json();
-  //       const chipData = await chipsRes.json();
-  //       setStudent(info);
-  //       setChips(chipData.chipCount);
-  //       setLoading(false);
-  //     }).catch(() => setLoading(false));
-  // }, [navigate]);
+  useEffect(() => {
+    if (!getToken()) { navigate("/login"); return; }
+
+    Promise.all([
+      apiFetch("/student/info"),
+      apiFetch("/student/chips"),
+    ]).then(async ([infoRes, chipsRes]) => {
+      if (!infoRes || !chipsRes) return;
+      const info = await infoRes.json();
+      const chipData = await chipsRes.json();
+      setStudent(info);
+      setChips(chipData.chipCount);
+      setLoading(false);
+    }).catch(() => setLoading(false));
+  }, [navigate]);
 
   if (loading) {
     return (

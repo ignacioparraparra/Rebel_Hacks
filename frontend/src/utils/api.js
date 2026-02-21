@@ -10,7 +10,7 @@ export const clearTokens = () => {
 
 export function setTokens(accessToken, refreshToken) {
   localStorage.setItem("accessToken", accessToken);
-  localStorage.setItem("refreshToken", refreshToken);
+  localStorage.setItem("refreshToken", refreshToken); //waow. security amazing :-)
 }
 
 export async function apiFetch(path, opts = {}) {

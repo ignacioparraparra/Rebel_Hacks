@@ -12,6 +12,7 @@ import SpinTheWheel from "./pages/games/SpinTheWheel.jsx";
 import Classes from "./pages/Classes.jsx";
 import Login from "./pages/Login.jsx";
 import ErrorBoundary from "./pages/ErrorBoundary.jsx";
+import AdminDashboard from "./pages/AdminDashboard.jsx";
 
 // wrapper
 function LayoutRoute() {
@@ -36,7 +37,7 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/prizes" element={<Prizes />} />
           <Route path="/leaderboard" element= {<Leaderboard/>}></Route>
-          
+            <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/classes" element={<Classes />} />
             <Route path="*" element={<ErrorBoundary />} />
           </Route>
