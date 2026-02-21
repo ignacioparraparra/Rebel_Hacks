@@ -16,6 +16,18 @@ router.get('/chips', authenticateToken, async (req, res) => {
     return res.send({chipCount})
 })
 
+// RETURN STUDENT DETAILS
+router.get('/info', authenticateToken, async (req, res) => {
+    try {
+        const student_id = req.student_id
+        const student_info = await getStudent(student_id)
+        return res.status(200).json(student_info)     
+    } catch (err) {
+        return res.status(500)
+    }
+    
+})
+
 // SQL QUERY TO GET STUDENTS CHIP COUNT FROM DB
 async function getChipCount(student_id) {
     const chipField = await sql `
@@ -29,11 +41,11 @@ async function getChipCount(student_id) {
 // SQL QUERY TO GET STUDENTS NAME 
 async function getStudent(student_id) {
     const name = await sql `
-        SELECT first_name
+        SELECT first_name, last_name
         FROM students
         WHERE id=${student_id}`
-    const first_name = name[0]['first_name']
-    return first_name
+    const details = name[0]
+    return details
 }
 
 module.exports = router
