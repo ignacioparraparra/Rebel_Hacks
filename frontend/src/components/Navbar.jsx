@@ -13,7 +13,7 @@ function Navbar() {
 
   function handleLogout() {
     clearTokens();
-    navigate("/login");
+    navigate("/");
   }
 
   const close = () => setMenuOpen(false);
