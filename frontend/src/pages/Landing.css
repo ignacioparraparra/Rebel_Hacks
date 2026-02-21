@@ -1,0 +1,65 @@
+/* ── Landing Page ── */
+
+.landing-hero {
+  /* fill the full viewport below the navbar */
+  width: 100%;
+  min-height: calc(100vh - 64px);
+
+  /* background image: cover the whole area, stay centred */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* semi-transparent dark layer so text pops over the photo */
+.landing-overlay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 1.5rem;
+  padding: 3rem 2rem;
+  width: 100%;
+  min-height: calc(100vh - 64px);
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.landing-logo {
+  font-family: var(--font-brand);
+  font-size: 5rem;
+  color: var(--gold);
+  letter-spacing: 2px;
+  margin: 0;
+  text-shadow: 0 2px 24px rgba(0,0,0,0.7);
+}
+
+.landing-tagline {
+  font-size: 1.25rem;
+  color: var(--text);
+  max-width: 560px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.landing-cta {
+  display: inline-block;
+  background: var(--gold);
+  color: #111;
+  padding: 0.85rem 2.8rem;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+  margin-top: 0.5rem;
+}
+
+.landing-cta:hover {
+  background: var(--gold-light);
+  transform: scale(1.04);
+}
