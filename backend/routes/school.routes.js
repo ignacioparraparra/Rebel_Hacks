@@ -70,15 +70,11 @@ router.post('/:school_id/roster', upload.single("roster"), async (req, res) => {
 router.post('/:school_id/attendance', upload.single("roster"), async (req, res) => {
     try {
 
-        const {school_id} = req.params
-
-        const results = []
-
         if (!req.file) {
             return res.status(400).send('No file uploaded.')
         }
 
-        const csvText = req.file.buffer.toString()
+        const csvText = fs.readFileSync(req.file.path, "utf-8")
         const records = parse(csvText, {
             columns: true,
             skip_empty_lines: true
@@ -89,8 +85,15 @@ router.post('/:school_id/attendance', upload.single("roster"), async (req, res) 
         for (const row of records) {
             if (row.attendance === "present") {
 
+                const id = await sql `
+                    SELECT id
+                    FROM students
+                    WHERE student_id=${row.student_id}
+                    `
+                const cleaned_id = id[0]['id']
+                const school_id = Number(row.school_id)
                 await createChipTransaction(
-                    row.student_id,
+                    cleaned_id,
                     school_id,
                     1
                 )
