@@ -41,6 +41,13 @@ function Prizes() {
         if (!infoRes || !chipsRes) return;
         const info = await infoRes.json();
         const chipData = await chipsRes.json();
+
+        const idRes = await apiFetch(`/student/${info.student_id}`);
+        if (idRes) {
+          const realId = await idRes.json();
+          info.real_student_id = realId;
+        }
+
         setStudent(info);
         setChips(chipData.current_balance);
       },
@@ -57,9 +64,7 @@ function Prizes() {
       return;
     }
 
-    const { student_id } = student;
-
-    await apiFetch(`/transaction/chips/${student_id}`, {
+    await apiFetch(`/transaction/chips/${student.real_student_id}`, {
       method: "POST",
       body: JSON.stringify({ amount: -item.cost }),
     });

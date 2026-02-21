@@ -89,7 +89,10 @@ function Dashboard() {
             {first_name[0]}
             {last_name[0]}
           </div>
-          <span className="dash-sidebar-name">{first_name}</span>
+          <div className="dash-sidebar-info">
+            <span className="dash-sidebar-name">{first_name} {last_name}</span>
+            <span className="dash-sidebar-role">Student</span>
+          </div>
         </div>
         <nav className="dash-sidebar-nav">
           {subpages.map((page) => (

@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getToken, clearTokens, apiFetch } from "../utils/api";
 import "./Navbar.css";
@@ -7,6 +7,7 @@ const navClass = ({ isActive }) => (isActive ? "nav-link active" : "nav-link");
 
 function Navbar() {
   const navigate = useNavigate();
+  const location = useLocation();
   const isAdmin = localStorage.getItem("username") === "admin";
   const loggedIn = isAdmin || !!getToken();
   const [menuOpen, setMenuOpen] = useState(false);
@@ -23,7 +24,7 @@ function Navbar() {
         // empty or invalid response
       }
     });
-  }, [loggedIn]);
+  }, [loggedIn, location.pathname]);
 
   function handleLogout() {
     clearTokens();
