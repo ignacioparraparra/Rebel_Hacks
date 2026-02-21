@@ -4,7 +4,7 @@ import Navbar from "./components/Navbar.jsx";
 import Layout from "./pages/Body.jsx";
 import Landing from "./pages/Landing.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
-import Games from "./pages/Games.jsx";
+import Prizes from "./pages/Prizes.jsx";
 import SpinTheWheel from "./pages/games/SpinTheWheel.jsx";
 import Classes from "./pages/Classes.jsx";
 import Login from "./pages/Login.jsx";
@@ -31,8 +31,8 @@ function App() {
           {/* App pages — all share the Layout max-width wrapper */}
           <Route element={<LayoutRoute />}>
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/games" element={<Games />} />
-            <Route path="/games/spin-the-wheel" element={<SpinTheWheel />} />
+            <Route path="/prizes" element={<Prizes />} />
+          
             <Route path="/classes" element={<Classes />} />
             <Route path="*" element={<ErrorBoundary />} />
           </Route>
