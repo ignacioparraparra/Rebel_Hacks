@@ -25,6 +25,22 @@ router.get("/info", authenticateToken, async (req, res) => {
   }
 });
 
+router.get("/:id", async (req, res) => {
+
+  const {id} = req.params
+  try {
+    const student_id = await sql `
+    SELECT student_id
+    FROM students
+    WHERE id=${id}`
+    const cleaned_id = student_id[0].student_id
+    return res.json(cleaned_id)
+  } catch (err) {
+    return res.status(500).json(err)
+  }
+})
+
+
 // SQL QUERY TO GET STUDENTS CHIP COUNT FROM DB
 async function getChipCount(student_id) {
   const chipField = await sql`
