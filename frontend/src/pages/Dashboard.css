@@ -27,11 +27,21 @@
   margin-bottom: 0.5rem;
 }
 
+.dash-sidebar-info {
+  display: flex;
+  flex-direction: column;
+}
+
 .dash-sidebar-name {
   font-family: var(--font-brand);
   font-size: 0.95rem;
   font-weight: 700;
   color: var(--main-color);
+}
+
+.dash-sidebar-role {
+  font-size: 0.75rem;
+  color: var(--text-muted);
 }
 
 .dash-sidebar-nav {

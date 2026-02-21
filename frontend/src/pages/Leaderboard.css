@@ -8,8 +8,16 @@
 }
 
 .leaderboard-title {
-    margin: 0 0 24px;
+    margin: 0;
     font-size: 2rem;
+}
+
+.leaderboard-desc {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    text-align: center;
+    max-width: 480px;
+    margin: 0;
 }
 
 .leaderboard-list {

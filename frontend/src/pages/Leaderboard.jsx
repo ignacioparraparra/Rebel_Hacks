@@ -34,7 +34,7 @@ function Leaderboard() {
     }
 
     fetchLeaderboard();
-  }, [navigate, isAdmin]);
+  }, [navigate, isAdmin, school_id]);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
@@ -42,6 +42,9 @@ function Leaderboard() {
   return (
     <div className="leaderboard-page">
       <h1 className="leaderboard-title">Leaderboard</h1>
+      <p className="leaderboard-desc">
+        Ranked by total chips earned. Earn chips through attendance and classroom participation. Spending chips on prizes won't affect your rank.
+      </p>
       <ol className="leaderboard-list">
         {leaderboard
           .filter((student) => student.first_name.toLowerCase() !== "admin")
