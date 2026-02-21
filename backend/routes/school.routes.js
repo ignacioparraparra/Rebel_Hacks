@@ -1,13 +1,18 @@
 require('dotenv').config()
 const express = require('express')
 const router = express.Router()
+const multer = require("multer");
+const csv = require("csv-parser");
+const fs = require("fs");
 
+const app = express();
+const upload = multer({ dest: "uploads/" });
 router.use(express.json())
 
 const sql = require('../database.js')
 
 // CREATE SCHOOL ACCOUNT
-router.post('/enroll', async (req, res) => {
+router.post('/enroll/account', async (req, res) => {
     try {
         const school_name = req.body.school_name
 
@@ -23,6 +28,24 @@ router.post('/enroll', async (req, res) => {
         res.status(500).json({error:"Server error"})
     }
 })
+
+// UPLOAD CLASS DATA, first_name, last_name, school_id, grade
+router.post('/:school_id/roster', upload.single("roster"), async (req, res) => {
+    try {
+        const results = []
+
+        fs.createReadStream(req.file.path)
+        .pipe(csv())
+        .on("data", (data) => results.push(data))
+        .on("end", () => {
+            console.log(results);
+            res.status(200).json({message: "File processed", rows: results.length})
+        })
+    } catch (err) {
+        return res.status(500).json({err:"Server error"})
+    }
+})
+
 
 // RETURN SCHOOL LEADERBOARD
 router.get('/leaderboard/:school_id', async (req, res) => {
