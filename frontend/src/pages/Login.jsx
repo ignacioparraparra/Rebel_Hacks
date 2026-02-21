@@ -47,7 +47,11 @@ function Login() {
         <Link to="/" className="login-back-btn">
           <i className="bi bi-arrow-left"></i> Back
         </Link>
-        <img src="/artboard.png" alt="scholarChips" className="login-logo" />
+        <img
+          src="/artboard-simple.png"
+          alt="scholarChips"
+          className="login-logo"
+        />
         <p className="login-sub">Sign in to your account</p>
 
         {error && <div className="error-box">{error}</div>}
