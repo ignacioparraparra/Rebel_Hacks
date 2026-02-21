@@ -6,12 +6,12 @@ function Leaderboard() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const school_id = 1;
+  const school_id = 2;
 
   useEffect(() => {
     async function fetchLeaderboard() {
       try {
-        const res = await fetch(`http://localhost:7777/leaderboard/${school_id}`);
+        const res = await fetch(`http://localhost:7777/school/leaderboard/${school_id}`);
         if (!res.ok) throw new Error("Failed to fetch leaderboard");
         const data = await res.json();
         setLeaderboard(data);
