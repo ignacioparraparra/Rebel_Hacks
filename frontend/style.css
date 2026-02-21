@@ -1,16 +1,13 @@
-.html {
-    background-color: #123;
-    
-}   
+.chela-one-regular {
+  font-family: "Chela One", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
 
-.navbar {
-    display: flex;
-    flex-direction: row;
-    height: 50px;
-    background-color: #333;
-    color: #fff;
-    padding: 10px;
-    text-align: center;
+.chela-one-bold {
+  font-family: "Chela One", system-ui;
+  font-weight: 700;
+  font-style: normal;
 }
 
 body {

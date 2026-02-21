@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "./Games.css";
+import "./games.css";
 
 function Games() {
   return (

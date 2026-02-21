@@ -1,52 +1,73 @@
-.navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 2rem;
-  height: 64px;
-  background-color: #111;
-  border-bottom: 2px solid var(--gold);
-  position: sticky;
-  top: 0;
-  z-index: 100;
+/* ── Global CSS variables ── */
+/* These are used across the whole app. Define them once here on :root
+     so every component can use them via var(--gold) etc. */
+:root {
+    --gold: #ffd700;
+    --gold-light: #ffe44d;
+    --font-brand: 'Chela One', system-ui, sans-serif;
+    --bg: white;
+    --text: #f0f0f0;
+    --text-muted: #aaaaaa;
 }
 
+/* ── Navbar ── */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    height: 64px;
+    background-color: var(--bg);
+    border-bottom: 2px solid var(--gold);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
 
 .navbar-brand {
-  font-family: var(--font-brand);
-  font-size: 1.5rem;
-  color: var(--gold);
-  letter-spacing: 1px;
+    font-family: var(--font-brand);
+    font-size: 1.5rem;
+    color: var(--gold);
+    letter-spacing: 1px;
 }
 
 .navbar-links {
-  display: flex;
-  list-style: none;
-  gap: 2.5rem;
+    display: flex;
+    list-style: none;
+    gap: 2.5rem;
 }
 
 .nav-link {
-  color: var(--text-muted);
-  font-size: 0.95rem;
-  font-weight: 500;
-  transition: color 0.2s;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: color 0.2s;
 }
 
 .nav-link:hover,
 .nav-link.active {
-  color: var(--gold);
+    color: var(--gold);
 }
 
 .navbar-login-btn {
-  background: var(--gold);
-  color: #111;
-  padding: 0.4rem 1.4rem;
-  border-radius: 20px;
-  font-weight: bold;
-  font-size: 0.9rem;
-  transition: background 0.2s;
+    background: var(--gold);
+    color: #111;
+    padding: 0.4rem 1.4rem;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: background 0.2s;
 }
 
 .navbar-login-btn:hover {
-  background: var(--gold-light);
+    background: var(--gold-light);
+}
+
+.element-home {
+    border: 4px solid var(--gold);
+    border-radius: 12px;
+    padding: 0.5rem 1rem;
+    color: var(--gold);
+    font-weight: bold;
+    transition: background 0.2s, color 0.2s;
 }
