@@ -1,16 +1,14 @@
 import { NavLink } from "react-router-dom";
 import "./Navbar.css";
 
-// navClass is a small helper React Router calls for us automatically.
-// isActive is true when the current URL matches this link's `to` path.
+// active link helper
 const navClass = ({ isActive }) => (isActive ? "nav-link active" : "nav-link");
 
 function Navbar() {
   return (
     <nav className="navbar">
-      {/* Logo / home link - left side */}
+      {/* logo */}
       <NavLink to="/dashboard" className={navClass} end><h1 className="element-home">scholarChips</h1></NavLink>
-      <NavLink to="/" className={navClass} end><h1 className="nav-link-element element-home">scholarChips</h1></NavLink>
 
       <div className="navbar-links">
         <NavLink to="/dashboard" className={navClass} end><div className="nav-link-element">Dashboard</div></NavLink>

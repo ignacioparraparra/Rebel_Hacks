@@ -13,7 +13,7 @@ import Classes from "./pages/Classes.jsx";
 import Login from "./pages/Login.jsx";
 import ErrorBoundary from "./pages/ErrorBoundary.jsx";
 
-// LayoutRoute renders <Layout> with an <Outlet /> inside.
+// wrapper
 function LayoutRoute() {
   return (
     <Layout>
@@ -27,11 +27,11 @@ function App() {
     <>
         <Navbar />
         <Routes>
-          {/* Full-width pages - intentionally outside Layout */}
+          {/* no layout */}
           <Route path="/" element={<Landing />} />
           <Route path="/login" element={<Login />} />
 
-          {/* App pages - all share the Layout max-width wrapper */}
+          {/* with layout */}
           <Route element={<LayoutRoute />}>
             <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/prizes" element={<Prizes />} />

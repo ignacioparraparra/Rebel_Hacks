@@ -4,73 +4,118 @@ import heroImg from "../assets/lasvegas.jpg";
 
 function Landing() {
   return (
-    <div className="landing-page" style={{ backgroundImage: `url(${heroImg})` }}>
+    <div className="landing-page">
 
-      {/* hero img with  parallax bg */}
-      <section className="landing-hero">
-        <div className="landing-overlay">
-            <div className="landing-content">
-                <h1 className="landing-logo">scholarChips</h1>
-                <p className="landing-tagline">
-                    <i>...where showing up cashes in.</i>
-                </p>
-                <Link to="/login" className="landing-cta">Get Started</Link>
+      {/* hero — vegas parallax */}
+      <section className="landing-hero" style={{ backgroundImage: `url(${heroImg})` }}>
+        <div className="landing-hero-overlay">
+          <div className="landing-hero-content">
+            <span className="landing-chip-badge">
+              <i className="bi bi-star-fill"></i> Earn. Compete. Win.
+            </span>
+            <h1 className="landing-logo">
+              scholar<span className="landing-logo-accent">Chips</span>
+            </h1>
+            <p className="landing-tagline">
+              Show up, earn chips, climb the leaderboard, and cash in for real prizes.
+              ScholarChips turns attendance into a game worth playing.
+            </p>
+            <div className="landing-hero-actions">
+              <Link to="/login" className="btn btn-gold landing-cta">
+                Get Started <i className="bi bi-arrow-right"></i>
+              </Link>
             </div>
+            <div className="landing-chip-preview">
+              <div className="landing-chip-icon">SC</div>
+              <span className="landing-chip-number">1,250</span>
+              <span className="landing-chip-label">chips earned this week</span>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* mission - what is this thing? */}
-      <div className="giganticDiv">
-        <section className="landing-section landing-mission">
-            <h2>What is scholarChips?</h2>
-            <p>
-            scholarChips is a classroom engagement platform that turns participation
-            into a game. Teachers create activities, students earn chips for showing
-            up and competing- and everyone can see the leaderboard in real time.
-            </p>
-        </section>
+      {/* stats bar */}
+      <section className="landing-stats-bar">
+        <div className="landing-stat">
+          <span className="landing-stat-number">2,400+</span>
+          <span className="landing-stat-label">Students enrolled</span>
+        </div>
+        <div className="landing-stat">
+          <span className="landing-stat-number">180K</span>
+          <span className="landing-stat-label">Chips earned</span>
+        </div>
+        <div className="landing-stat">
+          <span className="landing-stat-number">95%</span>
+          <span className="landing-stat-label">Attendance rate</span>
+        </div>
+      </section>
 
-        {/* - why - the problem we're solving */}
-        <section className="landing-section landing-why">
-            <h2>Why does it exist?</h2>
-            <div className="landing-cards">
-            <div className="landing-card">
-                <span className="landing-card-icon">LOGO A</span>
-                <h3>CCSD Absenteeism</h3>
-                <p>
-                    In 2022, student absenteeism peaked at nearly 40%. Even just near 2025, student absenteeism still remained at a staggering 26.9%. We'll help students show up and stay engaged, even when the material isn't thrilling on its own.
-                </p>
+      {/* why */}
+      <section className="landing-section landing-why">
+        <h2>Why scholarChips?</h2>
+        <p className="landing-section-sub">
+          CCSD student absenteeism hit 40% in 2022 and still sits near 27%.
+          We make showing up worth it.
+        </p>
+        <div className="landing-cards">
+          <div className="card landing-card">
+            <div className="landing-card-sticker landing-card-sticker--red">
+              <i className="bi bi-graph-down-arrow"></i>
             </div>
-            <div className="landing-card">
-                <span className="landing-card-icon">LOGO B</span>
-                <h3>Competition motivates</h3>
-                <p>A visible leaderboard gives students something to chase beyond a grade.</p>
+            <h3>Fight Absenteeism</h3>
+            <p>Students earn chips every day they attend. Consistency pays off on the leaderboard.</p>
+          </div>
+          <div className="card landing-card">
+            <div className="landing-card-sticker landing-card-sticker--teal">
+              <i className="bi bi-trophy-fill"></i>
             </div>
-            <div className="landing-card">
-                <span className="landing-card-icon">LOGO C</span>
-                <h3>Rewards feel good</h3>
-                <p>Chips can be used to buy prizes like food vouchers, school merchandise, clothes, school supplies, books, and more!</p>
+            <h3>Fuel Competition</h3>
+            <p>A live leaderboard gives students something to chase beyond just a grade.</p>
+          </div>
+          <div className="card landing-card">
+            <div className="landing-card-sticker landing-card-sticker--amber">
+              <i className="bi bi-gift-fill"></i>
             </div>
-            </div>
-        </section>
+            <h3>Real Rewards</h3>
+            <p>Food vouchers, school merch, supplies, books, and more in the prize shop.</p>
+          </div>
+        </div>
+      </section>
 
-        {/* How???? */}
-        <section className="landing-section landing-how">
-            <h2>How it works</h2>
-            <ol className="landing-steps">
-            <li><strong>Teacher creates a class</strong> and sets up activities or games.</li>
-            <li><strong>Students join</strong> and earn chips by participating and winning.</li>
-            <li><strong>Chips stack up</strong> on a live leaderboard everyone can see.</li>
-            <li><strong>Wager chips</strong> on classroom games for bonus rewards.</li>
-            </ol>
-        </section>
+      {/* how */}
+      <section className="landing-section landing-how">
+        <h2>How it works</h2>
+        <div className="landing-how-strip">
+          <div className="landing-how-step">
+            <div className="landing-how-icon"><i className="bi bi-person-plus-fill"></i></div>
+            <span>Join your class</span>
+          </div>
+          <div className="landing-how-arrow"><i className="bi bi-arrow-right"></i></div>
+          <div className="landing-how-step">
+            <div className="landing-how-icon"><i className="bi bi-calendar-check-fill"></i></div>
+            <span>Show up daily</span>
+          </div>
+          <div className="landing-how-arrow"><i className="bi bi-arrow-right"></i></div>
+          <div className="landing-how-step">
+            <div className="landing-how-icon"><i className="bi bi-coin"></i></div>
+            <span>Stack chips</span>
+          </div>
+          <div className="landing-how-arrow"><i className="bi bi-arrow-right"></i></div>
+          <div className="landing-how-step">
+            <div className="landing-how-icon"><i className="bi bi-bag-check-fill"></i></div>
+            <span>Win prizes</span>
+          </div>
+        </div>
+      </section>
 
-        {/* footer and call to action */}
-        <section className="landing-section landing-footer-cta">
-            <h2>Ready to cash in?</h2>
-            <Link to="/login" className="landing-cta">Create an Account</Link>
-        </section>
-      </div>
+      {/* footer cta */}
+      <section className="landing-section landing-footer-cta">
+        <h2>Ready to start earning?</h2>
+        <Link to="/login" className="btn btn-gold landing-cta">
+          Create an Account <i className="bi bi-arrow-right"></i>
+        </Link>
+      </section>
+
     </div>
   );
 }

@@ -1,4 +1,3 @@
-
 function Layout({ children }) {
     return (
         <main className="page-wrapper">
