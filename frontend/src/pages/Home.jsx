@@ -4,4 +4,4 @@ function Home() {
     </>
 }
 
-export default Home;x
+export default Home;

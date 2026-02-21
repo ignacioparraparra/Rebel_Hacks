@@ -1,12 +1,14 @@
-
-function Body() {
-    return <>
-        <div class="main-container">
-            <div class="body-container">
-                <h1>Welcome to scholarChips!</h1>
+// `children` is a special React prop — whatever you put BETWEEN the opening
+// and closing <Layout> tags gets passed in here and rendered inside the wrapper.
+// This is React's version of a "slot" in HTML template languages.
+function Layout({ children }) {
+    return (
+        <main className="page-wrapper">
+            <div className="page-content">
+                {children}
             </div>
-        </div>
-    </>
+        </main>
+    );
 }
 
-export default Body;
+export default Layout;
