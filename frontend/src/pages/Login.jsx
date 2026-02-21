@@ -91,7 +91,7 @@ function Login() {
         </label>
 
         <button
-          className="btn btn-primary login-btn"
+          className="btn btn-gold login-btn"
           type="submit"
           disabled={loading}
         >

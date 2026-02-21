@@ -62,6 +62,9 @@ function Navbar() {
             <NavLink to="/leaderboard" className={navClass} onClick={close}>
               <div className="nav-link-element">Leaderboard</div>
             </NavLink>
+            <NavLink to="/other" className={navClass} onClick={close}>
+              <div className="nav-link-element">Other</div>
+            </NavLink>
           </>
         ) : (
           <>
@@ -73,6 +76,9 @@ function Navbar() {
             </NavLink>
             <NavLink to="/leaderboard" className={navClass} onClick={close}>
               <div className="nav-link-element">Leaderboard</div>
+            </NavLink>
+            <NavLink to="/other" className={navClass} onClick={close}>
+              <div className="nav-link-element">Other</div>
             </NavLink>
           </>
         )}
