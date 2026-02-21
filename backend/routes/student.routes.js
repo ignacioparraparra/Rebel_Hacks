@@ -7,9 +7,9 @@ router.use(express.json())
 const sql = require('../database.js')
 
 // RETURN CHIP COUNT
-router.post('/chips', async (req, res) => {
+router.get('/chips/:id', async (req, res) => {
     // GET STUDENTS CHIP COUNT FROM DB
-    const user_id = req.body.user_id
+    const user_id = req.params
     const chipCount = await getChipCount(user_id)
     return res.send({chipCount})
 })
