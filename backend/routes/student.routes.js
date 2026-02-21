@@ -1,15 +1,17 @@
 require('dotenv').config()
 const express = require('express')
 const router = express.Router()
-
+const { authenticateToken } = require('../middlware/auth.middleware.js')
 router.use(express.json())
 
 const sql = require('../database.js')
 
+
 // RETURN STUDENTS CHIP COUNT
-router.get('/chips/:student_id', async (req, res) => {
+router.get('/chips', authenticateToken, async (req, res) => {
     // GET STUDENTS CHIP COUNT FROM DB
-    const {student_id} = req.params
+    const student_id = req.student_id
+    console.log(student_id)
     const chipCount = await getChipCount(student_id)
     return res.send({chipCount})
 })

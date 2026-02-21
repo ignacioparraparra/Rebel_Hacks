@@ -11,7 +11,7 @@ router.post('/login', async (req, res) => {
     const password = req.body.password 
 
     const student_id = await getUser(username)
-    
+    console.log(student_id)
     const user = { student_id : student_id }
 
         // get password from DB 
@@ -30,25 +30,12 @@ function generateAccessToken(user) {
     return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {expiresIn: '10m'})
 }
 
-async function checkUser(user, password) {
-        // get password from DB 
-       // const match  = bcrypt.compare(password, hash)
-        const match = true
-        if (match) {
-            const accessToken = generateAccessToken(user)
-            const refreshToken = jwt.sign(user, process.env.REFRESH_TOKEN_SECRET)
-            console.log(user.student_id)
-            // STORE REFRESH TOKEN IN DB 
-            return res.status(200).json({accessToken:accessToken, refreshToken:refreshToken})
-        }
-}
-
 async function getUser(username) {
     const student_id = await sql `
         SELECT id
         FROM students
         WHERE first_name=${username}`
-    return student_id
+    return student_id[0]['id']
 }
 
 module.exports = router
