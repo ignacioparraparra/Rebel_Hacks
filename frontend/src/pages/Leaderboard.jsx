@@ -11,7 +11,9 @@ function Leaderboard() {
   useEffect(() => {
     async function fetchLeaderboard() {
       try {
-        const res = await fetch(`http://localhost:7777/school/leaderboard/${school_id}`);
+        const res = await fetch(
+          `http://localhost:7777/school/leaderboard/${school_id}`,
+        );
         if (!res.ok) throw new Error("Failed to fetch leaderboard");
         const data = await res.json();
         setLeaderboard(data);
@@ -26,19 +28,37 @@ function Leaderboard() {
   }, []);
 
   if (loading) return <p>Loading...</p>;
-  if (error)   return <p>Error: {error}</p>;
+  if (error) return <p>Error: {error}</p>;
 
   return (
     <div className="leaderboard-page">
       <h1 className="leaderboard-title">Leaderboard</h1>
       <ol className="leaderboard-list">
-        {leaderboard.map((student, index) => (
-          <li key={index} className={`leaderboard-row rank-${index + 1}`}>
-            <span className="rank">#{index + 1}</span>
-            <span className="name">{student.first_name} {student.last_name}</span>
-            <span className="chips">{student.total_chips.toLocaleString()} chips</span>
-          </li>
-        ))}
+        {leaderboard.map((student, index) => {
+          const rank =
+            index === 0 ||
+            student.total_chips !== leaderboard[index - 1].total_chips
+              ? index + 1
+              : null; // will fill this in below
+
+          // "standard competition ranking": 1, 2, 2, 4 (not 1, 2, 2, 3)
+          const trueRank =
+            leaderboard.findIndex(
+              (s) => s.total_chips === student.total_chips,
+            ) + 1;
+
+          return (
+            <li key={index} className={`leaderboard-row rank-${trueRank}`}>
+              <span className="rank">#{trueRank}</span>
+              <span className="name">
+                {student.first_name} {student.last_name}
+              </span>
+              <span className="chips">
+                {student.total_chips.toLocaleString()} chips
+              </span>
+            </li>
+          );
+        })}
       </ol>
     </div>
   );

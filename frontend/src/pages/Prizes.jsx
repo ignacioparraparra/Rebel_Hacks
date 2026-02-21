@@ -171,10 +171,10 @@ function Prizes() {
                   innerBorderWidth={8}
                   radiusLineColor="#ffffff"
                   radiusLineWidth={2}
-                  fontSize={14}
+                  fontSize={18}
                   fontWeight="bold"
-                  perpendicularText={true}
-                  textDistance={65}
+                  perpendicularText={false}
+                  textDistance={60}
                   onStopSpinning={() => {
                     setMustSpin(false);
                     setWheelResult(wheelData[prizeIndex].option);

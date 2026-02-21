@@ -177,3 +177,12 @@
     margin-top: 0.25rem;
   }
 }
+.navbar-left,
+.navbar-right {
+  flex: 1;
+}
+
+.navbar-right {
+  display: flex;
+  justify-content: flex-end;
+}

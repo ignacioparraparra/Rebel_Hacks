@@ -20,12 +20,13 @@ function Navbar() {
 
   return (
     <nav className="navbar">
-      {/* logo */}
-      <NavLink to="/dashboard" className={navClass} end>
-        <h1 className="element-home">
-          scholar<span className="landing-logo-accent">Chips</span>
-        </h1>
-      </NavLink>
+      <div className="navbar-left">
+        <NavLink to="/dashboard" className={navClass} end>
+          <h1 className="element-home">
+            scholar<span className="landing-logo-accent">Chips</span>
+          </h1>
+        </NavLink>
+      </div>
 
       <button className="navbar-toggler" onClick={() => setMenuOpen(!menuOpen)}>
         <span className="navbar-toggler-icon"></span>
@@ -38,7 +39,6 @@ function Navbar() {
         <NavLink to="/prizes" className={navClass} onClick={close}>
           <div className="nav-link-element">Prizes</div>
         </NavLink>
-        {/* <NavLink to="/classes" className={navClass}><div className="nav-link-element">Classes</div></NavLink> */}
         <NavLink to="/leaderboard" className={navClass} onClick={close}>
           <div className="nav-link-element">Leaderboard</div>
         </NavLink>
@@ -47,15 +47,17 @@ function Navbar() {
         </NavLink>
       </div>
 
-      {loggedIn ? (
-        <button className="navbar-login-btn" onClick={handleLogout}>
-          Logout
-        </button>
-      ) : (
-        <a href="/login" className="navbar-login-btn">
-          Login
-        </a>
-      )}
+      <div className="navbar-right">
+        {loggedIn ? (
+          <button className="navbar-login-btn" onClick={handleLogout}>
+            Logout
+          </button>
+        ) : (
+          <a href="/login" className="navbar-login-btn">
+            Login
+          </a>
+        )}
+      </div>
     </nav>
   );
 }
