@@ -1,15 +1,21 @@
 const express = require('express')
 const app = express()
+const cors = require('cors')
 
 const authRoutes = require('./routes/auth.routes.js')
 const studentRoutes = require('./routes/student.routes.js')
-const teacherRoutes = require('./routes/teacher.routes.js')
+const schoolRoutes = require('./routes/school.routes.js')
+const transactionRoutes = require('./routes/transaction.routes.js')
 
 app.use(express.json())
+app.use(cors({
+    origin: ['http://localhost:3000', 'http://localhost:5173']
+}))
 
 app.use('/auth', authRoutes)
 app.use('/student', studentRoutes)
-app.use('/teacher', teacherRoutes)
+app.use('/school', schoolRoutes)
+app.use('/transaction', transactionRoutes)
 
 app.listen(7777, (err) => {
     if (err) return console.log('server failed')
