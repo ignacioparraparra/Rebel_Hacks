@@ -1,11 +1,15 @@
 const express = require('express')
 const app = express()
+const cors = require('cors')
 
 const authRoutes = require('./routes/auth.routes.js')
 const studentRoutes = require('./routes/student.routes.js')
 const schoolRoutes = require('./routes/school.routes.js')
 
 app.use(express.json())
+app.use(cors({
+    origin: ['http://localhost:3000', 'http://localhost:5173']
+}))
 
 app.use('/auth', authRoutes)
 app.use('/student', studentRoutes)
