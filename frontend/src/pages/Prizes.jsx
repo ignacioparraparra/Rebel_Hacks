@@ -82,7 +82,12 @@ function Prizes() {
         {/* balance */}
         <div className="shop-balance">
           <span>Available Chips</span>
-          <span>{chips !== null ? Number(chips).toLocaleString() : "..."}</span>
+          <div className="shop-balance-count">
+            <img src="/favicon.webp" alt="chip" className="shop-chip-icon" />
+            <span>
+              {chips !== null ? Number(chips).toLocaleString() : "..."}
+            </span>
+          </div>
         </div>
 
         {error && <div className="shop-error">{error}</div>}

@@ -84,9 +84,12 @@ function Dashboard() {
         </div>
         <div className="dash-chip-display">
           <span className="dash-chip-label">Your Chips</span>
-          <span className="dash-chip-count">
-            {chips !== null ? Number(chips).toLocaleString() : "..."}
-          </span>
+          <div className="dash-chip-count-row">
+            <img src="/favicon.webp" alt="chip" className="dash-chip-icon" />
+            <span className="dash-chip-count">
+              {chips !== null ? Number(chips).toLocaleString() : "..."}
+            </span>
+          </div>
         </div>
       </section>
 
@@ -98,7 +101,7 @@ function Dashboard() {
             <span className="dash-stat-value">
               {Number(lifetime_chips_earned).toLocaleString()}
             </span>
-            <span className="dash-stat-label">Total Earned</span>
+            <span className="dash-stat-label">Total Chips Earned</span>
           </div>
         </div>
         <div className="glass dash-stat dash-stat-rank">

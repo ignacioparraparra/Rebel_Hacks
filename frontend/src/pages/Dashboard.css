@@ -10,7 +10,17 @@
   margin: 0 auto;
   width: 100%;
 }
+.dash-chip-count-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
 
+.dash-chip-icon {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
 /* welcome */
 .section-title-dashboard {
   margin: 0 0 0.5rem 0;

@@ -243,7 +243,17 @@
     height: 200px;
   }
 }
+.shop-balance-count {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
 
+.shop-chip-icon {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
 @media (max-width: 600px) {
   .shop-container {
     grid-template-columns: 1fr;
