@@ -11,7 +11,7 @@ router.get('/chips', authenticateToken, async (req, res) => {
     // GET STUDENTS CHIP COUNT FROM DB
     const student_id = req.student_id
     const chipCount = await getChipCount(student_id)
-    return res.send({chipCount})
+    return res.send(chipCount)
 })
 
 // RETURN STUDENT DETAILS
@@ -28,10 +28,15 @@ router.get('/info', authenticateToken, async (req, res) => {
 // SQL QUERY TO GET STUDENTS CHIP COUNT FROM DB
 async function getChipCount(student_id) {
     const chipField = await sql `
-        SELECT COALESCE(SUM(amount), 0) AS total_chips
-        FROM chip_ledger
-        WHERE student_id=${student_id}`
-    const chipCount = chipField[0]["total_chips"]
+        SELECT
+            cl.student_id,
+            COALESCE(SUM(CASE WHEN cl.amount > 0 THEN cl.amount ELSE 0 END), 0) AS lifetime_chips_earned,
+            COALESCE(SUM(CASE WHEN cl.amount < 0 THEN -cl.amount ELSE 0 END), 0) AS lifetime_chips_spent,
+            COALESCE(SUM(cl.amount), 0) AS current_balance
+            FROM chip_ledger cl
+            WHERE cl.student_id = ${student_id}
+            GROUP BY cl.student_id`
+    const chipCount = chipField[0]
     return chipCount
 }
 
