@@ -1,7 +1,29 @@
 import { createPortal } from "react-dom";
 import "./PurchaseModal.css";
 
-function PurchaseModal({ isOpen, onClose, onConfirm, item }) {
+function PurchaseModal({ isOpen, onClose, onConfirm, item, successMessage, onDismissSuccess }) {
+  // Success popup — shown after a purchase completes
+  if (successMessage) {
+    return createPortal(
+      <div className="modal-overlay">
+        <div className="modal-backdrop" onClick={onDismissSuccess} />
+        <div className="modal-box">
+          <div className="modal-success-icon">🎉</div>
+          <div className="modal-text">
+            <h3>Redeemed!</h3>
+            <p className="modal-sub">{successMessage}</p>
+          </div>
+          <div className="modal-buttons">
+            <button className="modal-btn-confirm" onClick={onDismissSuccess}>
+              Dismiss
+            </button>
+          </div>
+        </div>
+      </div>,
+      document.body
+    );
+  }
+
   if (!isOpen || !item) return null;
 
   return createPortal(
@@ -21,8 +43,18 @@ function PurchaseModal({ isOpen, onClose, onConfirm, item }) {
           <p className="modal-cost-amount">{item.cost}</p>
         </div>
         <div className="modal-buttons">
-          <button className="modal-btn-cancel" onClick={onClose}>Cancel</button>
-          <button className="modal-btn-confirm" onClick={() => { onConfirm(item); onClose(); }}>Confirm</button>
+          <button className="modal-btn-cancel" onClick={onClose}>
+            Cancel
+          </button>
+          <button
+            className="modal-btn-confirm"
+            onClick={() => {
+              onConfirm(item);
+              onClose();
+            }}
+          >
+            Confirm
+          </button>
         </div>
       </div>
     </div>,

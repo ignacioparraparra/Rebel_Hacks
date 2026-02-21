@@ -29,6 +29,7 @@ function Prizes() {
   const [student, setStudent] = useState(null);
   const [chips, setChips] = useState(null);
   const [error, setError] = useState(null);
+  const [successMessage, setSuccessMessage] = useState(null);
 
   const [mustSpin, setMustSpin] = useState(false);
   const [prizeIndex, setPrizeIndex] = useState(0);
@@ -72,6 +73,9 @@ function Prizes() {
       setPrizeIndex(index);
       setWheelResult(null);
       setMustSpin(true);
+      // Success popup is shown after the wheel stops (see onStopSpinning)
+    } else {
+      setSuccessMessage(`You redeemed: ${item.title}`);
     }
   };
 
@@ -182,8 +186,10 @@ function Prizes() {
                   perpendicularText={false}
                   textDistance={60}
                   onStopSpinning={() => {
+                    const won = wheelData[prizeIndex].option;
                     setMustSpin(false);
-                    setWheelResult(wheelData[prizeIndex].option);
+                    setWheelResult(won);
+                    setSuccessMessage(`You won: ${won}! 🎉`);
                   }}
                 />
               </div>
@@ -200,6 +206,8 @@ function Prizes() {
         }}
         onConfirm={handleConfirm}
         item={selectedItem}
+        successMessage={successMessage}
+        onDismissSuccess={() => setSuccessMessage(null)}
       />
     </>
   );
