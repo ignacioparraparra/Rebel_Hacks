@@ -6,7 +6,7 @@ function Landing() {
   return (
     <div className="landing-page">
 
-      {/* hero — vegas parallax */}
+      {/* hero - vegas parallax */}
       <section className="landing-hero" style={{ backgroundImage: `url(${heroImg})` }}>
         <div className="landing-hero-overlay">
           <div className="landing-hero-content">

@@ -3,7 +3,7 @@
 
 /* design tokens */
 :root {
-  /* palette */
+  /* palette - these colors were chosen at 3am, don't ask why */
   --main-color:       #002B49;
   --main-color-light: #1A4D7C;
   --accent:           #F5A623;
@@ -164,15 +164,30 @@ hr {
   justify-content: center;
   padding: 0 1rem;
   position: relative;
-  background-color: var(--surface);
+  background:
+    radial-gradient(ellipse at 85% -5%, rgba(245, 166, 35, 0.18) 0%, transparent 45%),
+    radial-gradient(ellipse at 5% 95%, rgba(0, 43, 73, 0.20) 0%, transparent 45%),
+    radial-gradient(ellipse at 50% 50%, rgba(26, 77, 124, 0.06) 0%, transparent 70%),
+    var(--gradient-surface);
+  background-size: 200% 200%;
+  animation: bg-drift 12s ease infinite;
 }
+
+@keyframes bg-drift { 0%,100%{background-position:0% 0%} 50%{background-position:100% 100%} }
 
 .page-wrapper::before {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(circle, rgba(0,43,73,0.04) 1px, transparent 1px);
-  background-size: 24px 24px;
+  background-image:
+    repeating-linear-gradient(
+      135deg,
+      rgba(0, 43, 73, 0.04) 0px,
+      rgba(0, 43, 73, 0.04) 1px,
+      transparent 1px,
+      transparent 12px
+    );
+  background-size: 12px 12px;
   pointer-events: none;
   z-index: 0;
 }
@@ -185,6 +200,7 @@ hr {
 .page-content {
   width: 100%;
   max-width: 1000px;
+  background: white;
   padding: 2rem 1.5rem;
 }
 
@@ -216,15 +232,16 @@ hr {
 }
 
 .btn-primary {
-  background: var(--main-color);
+  background: var(--accent);
   color: #FFFFFF;
-  border-color: var(--main-color);
+  border-color: var(--accent);
 }
 
 .btn-primary:hover {
-  background: var(--main-color-light);
+  background: var(--accent-light);
+  border-color: var(--accent-light);
   transform: translateY(-2px);
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow-gold);
 }
 
 .btn-gold {

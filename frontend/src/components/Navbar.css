@@ -1,4 +1,4 @@
-/* navbar */
+/* navbar - sticky because the user needs to see the logout button ASAP */
 
 .navbar {
   position: sticky;
@@ -14,7 +14,7 @@
   box-shadow: var(--shadow), 0 2px 0 var(--accent-glow);
 }
 
-/* brand */
+/* brand - probably should've made this an img tag but we're committed now */
 
 .element-home {
   font-family: var(--font-brand);
@@ -71,7 +71,7 @@
   border-color: var(--accent);
 }
 
-/* login button */
+/* login button - works for both button and anchor tag, witchcraft */
 
 .navbar-login-btn {
   display: inline-flex;
@@ -85,6 +85,7 @@
   letter-spacing: 0.3px;
   border-radius: var(--radius);
   text-decoration: none;
+  cursor: pointer;
   border: 2px solid var(--accent);
   transition: background 0.15s, transform 0.15s, box-shadow 0.2s;
 }

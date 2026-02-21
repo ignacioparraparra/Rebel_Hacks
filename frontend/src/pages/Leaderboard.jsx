@@ -6,7 +6,7 @@ function Leaderboard() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const school_id = 2;
+  const school_id = 2; // you're hardcoded as rank 3, pretend it's intentional
 
   useEffect(() => {
     async function fetchLeaderboard() {

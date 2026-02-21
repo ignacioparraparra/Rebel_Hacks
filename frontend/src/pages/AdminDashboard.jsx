@@ -1,8 +1,8 @@
 import { useState } from "react";
 import "./AdminDashboard.css";
 
-const API = "http://localhost:7777";
-const SCHOOL_ID = 2;
+const API = "http://localhost:7777"; // pray this never changes
+const SCHOOL_ID = 2; // magic number that will haunt us
 
 function AdminDashboard() {
   const [rosterFile, setRosterFile] = useState(null);
@@ -17,13 +17,13 @@ function AdminDashboard() {
 
   async function uploadRoster(e) {
     e.preventDefault();
-    if (!rosterFile) return;
+    if (!rosterFile) return; // silently fail like a real pro
     const fd = new FormData();
     fd.append("roster", rosterFile);
     try {
       const res = await fetch(`${API}/school/${SCHOOL_ID}/roster`, { method: "POST", body: fd });
       const data = await res.json();
-      setRosterMsg(res.ok ? `Roster uploaded — ${data.inserted} students added` : (data.message || "Upload failed"));
+      setRosterMsg(res.ok ? `Roster uploaded - ${data.inserted} students added` : (data.message || "Upload failed"));
     } catch {
       setRosterMsg("Network error");
     }
@@ -37,7 +37,7 @@ function AdminDashboard() {
     try {
       const res = await fetch(`${API}/school/${SCHOOL_ID}/attendance`, { method: "POST", body: fd });
       const data = await res.json();
-      setAttendanceMsg(res.ok ? `Attendance processed — ${data.total_chips_awarded} chips awarded` : (data.message || "Upload failed"));
+      setAttendanceMsg(res.ok ? `Attendance processed - ${data.total_chips_awarded} chips awarded` : (data.message || "Upload failed"));
     } catch {
       setAttendanceMsg("Network error");
     }

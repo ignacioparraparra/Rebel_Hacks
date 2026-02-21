@@ -1,4 +1,16 @@
-/* landing */
+/* landing 
+
+you all must simply understand
+
+you are nothing without flex
+
+flex is everything
+
+on the 6th day, god created flexbox
+
+on the 7th day, god rested, but then he realized he forgot to add gap property, so he added that too
+
+*/
 
 .landing-page {
   display: flex;
@@ -8,7 +20,6 @@
   background: var(--surface);
 }
 
-/* hero — vegas parallax */
 
 .landing-hero {
   width: 100%;
@@ -30,7 +41,7 @@
   justify-content: center;
   width: 100%;
   min-height: calc(100vh - 64px);
-  background: linear-gradient(
+  background: linear-gradient( /*fading stuff!*/
     180deg,
     rgba(0, 43, 73, 0.65) 0%,
     rgba(0, 43, 73, 0.80) 60%,
@@ -186,6 +197,13 @@
   margin-bottom: 0.75rem;
 }
 
+/* 
+
+MAKE IT STOP MAKE IT STOP MAKE IT STOP
+
+CSS IS DEMONIC THERE ARE TOO MANY THINGS TO STYLE
+
+*/
 .landing-section-sub {
   font-size: 1.05rem;
   color: var(--text-muted);

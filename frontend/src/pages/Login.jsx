@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { setTokens } from "../utils/api";
 import "./Login.css";
+import heroImg from "../assets/lasvegas.jpg";
 
 function Login() {
   const navigate = useNavigate();
@@ -29,7 +30,7 @@ function Login() {
       }
 
       const data = await res.json();
-      setTokens(data.accessToken, data.refreshToken);
+      setTokens(data.accessToken, data.refreshToken); // storing in localStorage like it's secure lol
       navigate("/dashboard");
     } catch {
       setError("Could not reach server.");
@@ -38,15 +39,16 @@ function Login() {
   }
 
   return (
-    <div className="center-page">
+    <div className="center-page login-bg" style={{ backgroundImage: `url(${heroImg})` }}>
       <form className="login-card anim-fade-up" onSubmit={handleSubmit}>
+        <Link to="/" className="login-back-btn"><i className="bi bi-arrow-left"></i> Back</Link>
         <h1 className="login-title">scholarChips</h1>
         <p className="login-sub">Sign in to your account</p>
 
         {error && <div className="error-box">{error}</div>}
 
         <label className="label">
-          First Name
+          Username
           <input
             className="input"
             type="text"
@@ -65,7 +67,6 @@ function Login() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             autoComplete="current-password"
-            required
           />
         </label>
 

@@ -3,10 +3,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { apiFetch, getToken } from "../utils/api";
 import "./Dashboard.css";
 
+// TODO: wire up real activity feed (this data is faker than my motivation at 3am)
 const MOCK_ACTIVITY = [
   { id: 1, desc: "Daily Attendance",      delta: +50,  time: "Today, 8:02 AM" },
   { id: 2, desc: "Spin the Wheel",        delta: -10,  time: "Yesterday, 3:15 PM" },
-  { id: 3, desc: "Quiz Bowl — 1st Place", delta: +200, time: "Yesterday, 1:30 PM" },
+  { id: 3, desc: "Quiz Bowl - 1st Place", delta: +200, time: "Yesterday, 1:30 PM" },
   { id: 4, desc: "Prize Redeemed: Homework Pass", delta: -15, time: "Mon, 11:45 AM" },
   { id: 5, desc: "Daily Attendance",      delta: +50,  time: "Mon, 8:00 AM" },
 ];
