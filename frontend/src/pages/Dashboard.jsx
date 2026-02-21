@@ -51,7 +51,7 @@ function Dashboard() {
     );
   }
 
-  const { first_name, last_name, grade, total_chips, rank } = student;
+  const { first_name, last_name, grade, lifetime_chips_earned, rank } = student;
   const streak = 12; // mock
 
   function formatTime(timestamp) {
@@ -95,7 +95,7 @@ function Dashboard() {
           <i className="bi bi-graph-up-arrow dash-stat-icon"></i>
           <div className="dash-stat-body">
             <span className="dash-stat-value">
-              {Number(total_chips).toLocaleString()}
+              {Number(lifetime_chips_earned).toLocaleString()}
             </span>
             <span className="dash-stat-label">Total Earned</span>
           </div>

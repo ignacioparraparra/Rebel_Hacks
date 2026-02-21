@@ -44,12 +44,13 @@ async function getChipCount(student_id) {
 async function getStudent(student_id) {
   const result = await sql`
         SELECT
-            id AS student_id,  -- add this
+            id AS student_id,
             first_name,
             last_name,
             school_id,
             grade,
             total_chips,
+            lifetime_chips_earned,
             rank
         FROM (
             SELECT
@@ -59,9 +60,10 @@ async function getStudent(student_id) {
                 s.school_id,
                 s.grade,
                 COALESCE(SUM(cl.amount), 0) AS total_chips,
+                COALESCE(SUM(CASE WHEN cl.amount > 0 THEN cl.amount ELSE 0 END), 0) AS lifetime_chips_earned,
                 DENSE_RANK() OVER (
                     PARTITION BY s.school_id
-                    ORDER BY COALESCE(SUM(cl.amount), 0) DESC
+                    ORDER BY COALESCE(SUM(CASE WHEN cl.amount > 0 THEN cl.amount ELSE 0 END), 0) DESC
                 ) AS rank
             FROM students s
             LEFT JOIN chip_ledger cl

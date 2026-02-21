@@ -8,7 +8,6 @@ import Dashboard from "./pages/Dashboard.jsx";
 import Leaderboard from "./pages/Leaderboard.jsx";
 
 import Prizes from "./pages/Prizes.jsx";
-import SpinTheWheel from "./pages/games/SpinTheWheel.jsx";
 import Classes from "./pages/Classes.jsx";
 import Login from "./pages/Login.jsx";
 import ErrorBoundary from "./pages/ErrorBoundary.jsx";
@@ -37,8 +36,6 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/prizes" element={<Prizes />} />
           <Route path="/leaderboard" element={<Leaderboard />}></Route>
-
-          <Route path="/games/spin-the-wheel" element={<SpinTheWheel />} />
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/classes" element={<Classes />} />
           <Route path="*" element={<ErrorBoundary />} />
