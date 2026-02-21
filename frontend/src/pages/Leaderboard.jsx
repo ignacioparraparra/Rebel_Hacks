@@ -6,11 +6,9 @@ function Leaderboard() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const isAdmin = localStorage.getItem("username") === "admin";
   const school_id = 2;
 
   useEffect(() => {
-    if (isAdmin) return;
     async function fetchLeaderboard() {
       try {
         const res = await fetch(
@@ -28,8 +26,6 @@ function Leaderboard() {
 
     fetchLeaderboard();
   }, []);
-
-  if (isAdmin) return null;
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
 

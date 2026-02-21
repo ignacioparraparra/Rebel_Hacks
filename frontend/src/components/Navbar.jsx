@@ -55,9 +55,14 @@ function Navbar() {
 
       <div className={`navbar-links ${menuOpen ? "show" : ""}`}>
         {isAdmin ? (
-          <NavLink to="/admin" className={navClass} onClick={close}>
-            <div className="nav-link-element">Admin</div>
-          </NavLink>
+          <>
+            <NavLink to="/admin" className={navClass} onClick={close}>
+              <div className="nav-link-element">Admin</div>
+            </NavLink>
+            <NavLink to="/leaderboard" className={navClass} onClick={close}>
+              <div className="nav-link-element">Leaderboard</div>
+            </NavLink>
+          </>
         ) : (
           <>
             <NavLink to="/dashboard" className={navClass} end onClick={close}>
