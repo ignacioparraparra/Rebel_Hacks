@@ -21,8 +21,9 @@
   "homepage": "https://github.com/ignacioparraparra/Rebel_Hacks#readme",
   "dependencies": {
     "bcrypt": "^6.0.0",
-    "csv-parser": "^3.2.0",
     "cors": "^2.8.6",
+    "csv-parse": "^6.1.0",
+    "csv-parser": "^3.2.0",
     "dotenv": "^17.3.1",
     "express": "^5.2.1",
     "jsonwebtoken": "^9.0.3",
