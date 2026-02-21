@@ -52,7 +52,8 @@ function Dashboard() {
   }
 
   const { first_name, last_name, grade, lifetime_chips_earned, rank } = student;
-  const streak = 12; // mock
+
+  const prizesRedeemed = activity.filter((t) => t.amount < 0).length;
 
   function formatTime(timestamp) {
     const date = new Date(timestamp);
@@ -108,10 +109,10 @@ function Dashboard() {
           </div>
         </div>
         <div className="glass dash-stat dash-stat-streak">
-          <i className="bi bi-fire dash-stat-icon"></i>
+          <i className="bi bi-bag-fill dash-stat-icon"></i>
           <div className="dash-stat-body">
-            <span className="dash-stat-value">{streak} days</span>
-            <span className="dash-stat-label">Attendance Streak</span>
+            <span className="dash-stat-value">{prizesRedeemed}</span>
+            <span className="dash-stat-label">Prizes Redeemed</span>
           </div>
         </div>
       </div>
