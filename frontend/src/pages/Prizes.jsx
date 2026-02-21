@@ -4,12 +4,10 @@ import "./prizes.css";
 import waow from "../assets/waow.jpg";
 
 const shopItems = [
-  { id: 1, icon: waow, title: "Game Pass", cost: 500 },
-  { id: 2, icon: waow, title: "Mystery Box", cost: 250 },
-  { id: 3, icon: waow, title: "XP Boost", cost: 150 },
-  { id: 4, icon: waow, title: "Gold Badge", cost: 1000 },
-  { id: 5, icon: waow, title: "Avatar Frame", cost: 350 },
-  { id: 6, icon: waow, title: "VIP Key", cost: 750 },
+  { id: 1, icon: waow, title: "Homework Pass", cost: 15 },
+  { id: 2, icon: waow, title: "School Hoodie", cost: 25 },
+  { id: 3, icon: waow, title: "Food Voucher", cost: 5 },
+  { id: 6, icon: waow, title: "Spin The Wheel", cost: 10 },
 ];
 
 function Prizes() {

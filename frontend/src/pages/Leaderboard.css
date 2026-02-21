@@ -1,0 +1,102 @@
+.leaderboard-page {
+    padding: 40px 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.leaderboard-title {
+    margin: 0 0 24px;
+    font-size: 2rem;
+}
+
+.leaderboard-list {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 16px;
+    padding: 20px;
+    width: 100%;
+    max-width: 860px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    list-style: none;
+    margin: 0;
+}
+
+.leaderboard-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: #fafafa;
+    border: 1px solid #e5e5e5;
+    border-radius: 12px;
+    padding: 16px 20px;
+}
+
+.rank {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #aaa;
+    min-width: 36px;
+}
+
+.name {
+    flex: 1;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.chips {
+    font-size: 0.9rem;
+    font-weight: 600;
+    background: #111;
+    color: #fff;
+    border-radius: 8px;
+    padding: 6px 14px;
+    white-space: nowrap;
+}
+
+/* Top 3 medal styling */
+.rank-1 {
+    border-color: #ffd700;
+    background: #fffdf0;
+}
+
+.rank-2 {
+    border-color: #c0c0c0;
+    background: #f9f9f9;
+}
+
+.rank-3 {
+    border-color: #cd7f32;
+    background: #fdf6f0;
+}
+
+.rank-1 .rank {
+    color: #ffd700;
+}
+
+.rank-2 .rank {
+    color: #a0a0a0;
+}
+
+.rank-3 .rank {
+    color: #cd7f32;
+}
+
+.rank-1 .chips {
+    background: #ffd700;
+    color: #111;
+}
+
+.rank-2 .chips {
+    background: #c0c0c0;
+    color: #111;
+}
+
+.rank-3 .chips {
+    background: #cd7f32;
+    color: #fff;
+}
