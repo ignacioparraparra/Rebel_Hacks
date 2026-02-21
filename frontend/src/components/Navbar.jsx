@@ -3,26 +3,31 @@ import { useState, useEffect } from "react";
 import { getToken, clearTokens, apiFetch } from "../utils/api";
 import "./Navbar.css";
 
-// active link helper
 const navClass = ({ isActive }) => (isActive ? "nav-link active" : "nav-link");
 
 function Navbar() {
   const navigate = useNavigate();
-  const loggedIn = !!getToken();
+  const isAdmin = localStorage.getItem("username") === "admin";
+  const loggedIn = isAdmin || !!getToken();
   const [menuOpen, setMenuOpen] = useState(false);
   const [chips, setChips] = useState(null);
 
   useEffect(() => {
-    if (!loggedIn) return;
+    if (!loggedIn || isAdmin) return;
     apiFetch("/student/chips").then(async (res) => {
       if (!res) return;
-      const data = await res.json();
-      setChips(data.current_balance);
+      try {
+        const data = await res.json();
+        setChips(data.current_balance);
+      } catch {
+        // empty or invalid response
+      }
     });
   }, [loggedIn]);
 
   function handleLogout() {
     clearTokens();
+    localStorage.removeItem("username");
     navigate("/");
   }
 
@@ -32,7 +37,7 @@ function Navbar() {
     <nav className="navbar">
       <div className="navbar-left">
         <NavLink
-          to={loggedIn ? "/dashboard" : "/"}
+          to={isAdmin ? "/admin" : loggedIn ? "/dashboard" : "/"}
           className="navbar-logo-link"
           end
         >
@@ -49,20 +54,24 @@ function Navbar() {
       </button>
 
       <div className={`navbar-links ${menuOpen ? "show" : ""}`}>
-        <NavLink to="/dashboard" className={navClass} end onClick={close}>
-          <div className="nav-link-element">Dashboard</div>
-        </NavLink>
-        <NavLink to="/prizes" className={navClass} onClick={close}>
-          <div className="nav-link-element">Prizes</div>
-        </NavLink>
-        <NavLink to="/leaderboard" className={navClass} onClick={close}>
-          <div className="nav-link-element">Leaderboard</div>
-        </NavLink>
-        <NavLink to="/admin" className={navClass} onClick={close}>
-          <div className="nav-link-element">Admin</div>
-        </NavLink>
+        {isAdmin ? (
+          <NavLink to="/admin" className={navClass} onClick={close}>
+            <div className="nav-link-element">Admin</div>
+          </NavLink>
+        ) : (
+          <>
+            <NavLink to="/dashboard" className={navClass} end onClick={close}>
+              <div className="nav-link-element">Dashboard</div>
+            </NavLink>
+            <NavLink to="/prizes" className={navClass} onClick={close}>
+              <div className="nav-link-element">Prizes</div>
+            </NavLink>
+            <NavLink to="/leaderboard" className={navClass} onClick={close}>
+              <div className="nav-link-element">Leaderboard</div>
+            </NavLink>
+          </>
+        )}
 
-        {/* logout lives here on mobile, hidden via CSS on desktop */}
         <div className="navbar-mobile-auth">
           {loggedIn ? (
             <button className="navbar-login-btn" onClick={handleLogout}>
@@ -76,9 +85,8 @@ function Navbar() {
         </div>
       </div>
 
-      {/* desktop-only auth button */}
       <div className="navbar-right">
-        {loggedIn && chips !== null && (
+        {loggedIn && !isAdmin && chips !== null && (
           <div className="navbar-chips">
             <img src="/favicon.webp" alt="chip" className="navbar-chip-icon" />
             <span>{Number(chips).toLocaleString()}</span>

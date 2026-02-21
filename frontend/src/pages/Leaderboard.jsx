@@ -6,9 +6,11 @@ function Leaderboard() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const school_id = 2; // you're hardcoded as rank 3, pretend it's intentional
+  const isAdmin = localStorage.getItem("username") === "admin";
+  const school_id = 2;
 
   useEffect(() => {
+    if (isAdmin) return;
     async function fetchLeaderboard() {
       try {
         const res = await fetch(
@@ -27,6 +29,7 @@ function Leaderboard() {
     fetchLeaderboard();
   }, []);
 
+  if (isAdmin) return null;
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
 
@@ -34,31 +37,26 @@ function Leaderboard() {
     <div className="leaderboard-page">
       <h1 className="leaderboard-title">Leaderboard</h1>
       <ol className="leaderboard-list">
-        {leaderboard.map((student, index) => {
-          const rank =
-            index === 0 ||
-            student.total_chips !== leaderboard[index - 1].total_chips
-              ? index + 1
-              : null; // will fill this in below
+        {leaderboard
+          .filter((student) => student.first_name.toLowerCase() !== "admin")
+          .map((student, index) => {
+            const trueRank =
+              leaderboard.findIndex(
+                (s) => s.total_chips === student.total_chips,
+              ) + 1;
 
-          // "standard competition ranking": 1, 2, 2, 4 (not 1, 2, 2, 3)
-          const trueRank =
-            leaderboard.findIndex(
-              (s) => s.total_chips === student.total_chips,
-            ) + 1;
-
-          return (
-            <li key={index} className={`leaderboard-row rank-${trueRank}`}>
-              <span className="rank">#{trueRank}</span>
-              <span className="name">
-                {student.first_name} {student.last_name}
-              </span>
-              <span className="chips">
-                {student.total_chips.toLocaleString()} chips
-              </span>
-            </li>
-          );
-        })}
+            return (
+              <li key={index} className={`leaderboard-row rank-${trueRank}`}>
+                <span className="rank">#{trueRank}</span>
+                <span className="name">
+                  {student.first_name} {student.last_name}
+                </span>
+                <span className="chips">
+                  {student.total_chips.toLocaleString()} chips
+                </span>
+              </li>
+            );
+          })}
       </ol>
     </div>
   );

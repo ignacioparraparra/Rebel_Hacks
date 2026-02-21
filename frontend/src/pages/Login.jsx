@@ -14,6 +14,16 @@ function Login() {
   async function handleSubmit(e) {
     e.preventDefault();
     setError("");
+
+    const isAdmin = username === "admin";
+
+    if (isAdmin) {
+      console.log("Admin Login");
+      localStorage.setItem("username", "admin");
+      window.location.href = "/admin";
+      return;
+    }
+
     setLoading(true);
 
     try {
@@ -30,7 +40,8 @@ function Login() {
       }
 
       const data = await res.json();
-      setTokens(data.accessToken, data.refreshToken); // storing in localStorage like it's secure lol
+      setTokens(data.accessToken, data.refreshToken);
+      localStorage.setItem("username", username);
       navigate("/dashboard");
     } catch {
       setError("Could not reach server.");
