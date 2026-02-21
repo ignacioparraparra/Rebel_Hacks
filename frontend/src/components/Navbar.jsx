@@ -1,6 +1,6 @@
 import { NavLink, useNavigate } from "react-router-dom";
-import { useState } from "react";
-import { getToken, clearTokens } from "../utils/api";
+import { useState, useEffect } from "react";
+import { getToken, clearTokens, apiFetch } from "../utils/api";
 import "./Navbar.css";
 
 // active link helper
@@ -10,6 +10,16 @@ function Navbar() {
   const navigate = useNavigate();
   const loggedIn = !!getToken();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [chips, setChips] = useState(null);
+
+  useEffect(() => {
+    if (!loggedIn) return;
+    apiFetch("/student/chips").then(async (res) => {
+      if (!res) return;
+      const data = await res.json();
+      setChips(data.current_balance);
+    });
+  }, [loggedIn]);
 
   function handleLogout() {
     clearTokens();
@@ -68,6 +78,12 @@ function Navbar() {
 
       {/* desktop-only auth button */}
       <div className="navbar-right">
+        {loggedIn && chips !== null && (
+          <div className="navbar-chips">
+            <img src="/favicon.webp" alt="chip" className="navbar-chip-icon" />
+            <span>{Number(chips).toLocaleString()}</span>
+          </div>
+        )}
         {loggedIn ? (
           <button className="navbar-login-btn" onClick={handleLogout}>
             Logout

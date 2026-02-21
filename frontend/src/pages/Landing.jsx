@@ -58,7 +58,7 @@ function Landing() {
 
       {/* why */}
       <section className="landing-section landing-why">
-        <h2>Why scholarChips?</h2>
+        <h2>Why ScholarChips?</h2>
         <p className="landing-section-sub">
           CCSD student absenteeism hit 40% in 2022 and still sits near 27%.
           <br />

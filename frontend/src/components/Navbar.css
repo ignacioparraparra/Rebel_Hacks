@@ -159,6 +159,20 @@
   display: none;
 }
 
+.navbar-chips {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 600;
+    margin-right: 12px;
+    color:white;
+}
+
+.navbar-chip-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
 /* responsive */
 
 @media (max-width: 768px) {
