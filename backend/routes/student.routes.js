@@ -6,24 +6,60 @@ router.use(express.json())
 
 const sql = require('../database.js')
 
-// RETURN CHIP COUNT
-router.get('/chips/:id', async (req, res) => {
+// RETURN STUDENTS CHIP COUNT
+router.get('/chips/:student_id', async (req, res) => {
     // GET STUDENTS CHIP COUNT FROM DB
-    const user_id = req.params
-    const chipCount = await getChipCount(user_id)
+    const {student_id} = req.params
+    const chipCount = await getChipCount(student_id)
     return res.send({chipCount})
 })
 
-// DEDUCT CHIPS 
-router.get('/chips', (req, res) => {
-    const chipDeduction = req.body.chipDeduction
+// CREATE CHIP TRANSACTION
+router.post('/chips/:school_id/:student_id', async (req, res) => {
+    const {school_id, student_id} = req.params
+    const amount = req.body.amount
 
-    // GET CHIP COUNT FROM DB 
-    // SUBTRACT CHIP COUNT FROM CHIP DEDUCTION
+    await createChipTransaction(student_id, school_id, amount)
 
-    // RETURN SUCCESS 
+    return res.sendStatus(200)
 })
 
+router.get('/leaderboard/:school_id', async (req, res) => {
+    try {
+        const {school_id} = req.params
+
+        const leaderboard = await getLeaderboard(school_id)
+
+        const cleaned = leaderboard.map(student => ({
+            ...student,
+            total_chips: Number(student.total_chips)
+        }))
+
+        res.status(200).json(cleaned)
+
+    } catch (err) {
+        console.error(err)
+        res.status(500).json({error:"Server error"})
+    }
+})
+
+// SQL QUERY TO GET STUDENT LEADERBOARD
+async function getLeaderboard(school_id) {
+    const leaderboard = await sql `
+        SELECT
+            s.first_name,
+            s.last_name,
+            COALESCE(SUM(cl.amount), 0) AS total_chips
+        FROM students s
+        LEFT JOIN chip_ledger cl
+            ON cl.student_id = s.id
+        WHERE s.school_id = ${school_id}
+        GROUP BY s.id
+        ORDER BY total_chips DESC`
+    return leaderboard
+}
+
+// SQL QUERY TO GET STUDENTS CHIP COUNT FROM DB
 async function getChipCount(student_id) {
     const chipField = await sql `
         SELECT COALESCE(SUM(amount), 0) AS total_chips
@@ -33,6 +69,20 @@ async function getChipCount(student_id) {
     return chipCount
 }
 
+// SQL INSERTION TO CREATE CHIP TRANSACTION
+async function createChipTransaction(student_id, school_id, amount) {
+    await sql `
+        INSERT INTO chip_ledger (
+            student_id,
+            school_id,
+            amount)
+            VALUES (
+            ${student_id},
+            ${school_id},
+            ${amount})`
+}
+
+// SQL QUERY TO GET STUDENTS NAME 
 async function getStudent(student_id) {
     const name = await sql `
         SELECT first_name
