@@ -34,7 +34,7 @@ Stats
 
 ## Login
 
--   
+- Login
 - Logout
 
 ## Leaderboard
@@ -43,6 +43,11 @@ Stats
 - Class Leaderboard
 
 ## Available Prizes
+
+## Resources for Dignity
+- Ingests student school, points them to map
+- Salvation Army/Goodwill
+- 
 
 # Features
 
