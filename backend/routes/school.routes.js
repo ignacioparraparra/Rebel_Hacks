@@ -135,26 +135,20 @@ router.get("/leaderboard/:school_id", async (req, res) => {
   }
 });
 
-// SQL QUERY TO GET STUDENT LEADERBOARD
 async function getLeaderboard(school_id) {
   const leaderboard = await sql`
         SELECT
-            first_name,
-            last_name,
-            total_chips,
-            DENSE_RANK() OVER (ORDER BY total_chips DESC) AS rank
-        FROM (
-            SELECT
-                s.id,
-                s.first_name,
-                s.last_name,
-                COALESCE(SUM(CASE WHEN cl.amount > 0 THEN cl.amount ELSE 0 END), 0) AS total_chips
-            FROM students s
-            LEFT JOIN chip_ledger cl
-                ON cl.student_id = s.id
-            WHERE s.school_id = ${school_id}
-            GROUP BY s.id
-        ) ranked
+            s.first_name,
+            s.last_name,
+            COALESCE(SUM(cl.amount), 0) AS total_chips,
+            DENSE_RANK() OVER (
+                ORDER BY COALESCE(SUM(cl.amount), 0) DESC
+            ) AS rank
+        FROM students s
+        LEFT JOIN chip_ledger cl
+            ON cl.student_id = s.id
+        WHERE s.school_id = ${school_id}
+        GROUP BY s.id, s.first_name, s.last_name
         ORDER BY total_chips DESC
     `;
   return leaderboard;
