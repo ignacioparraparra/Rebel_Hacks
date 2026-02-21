@@ -29,10 +29,14 @@ router.post('/enroll/account', async (req, res) => {
     }
 })
 
-// UPLOAD CLASS DATA, first_name, last_name, school_id, grade
+// UPLOAD CLASS DATA, student id, first_name, last_name, school_id, grade
 router.post('/:school_id/roster', upload.single("roster"), async (req, res) => {
     try {
         const results = []
+
+        if (!req.file) {
+            return res.status(400).send('No file uploaded.')
+        }
 
         fs.createReadStream(req.file.path)
         .pipe(csv())
@@ -42,7 +46,7 @@ router.post('/:school_id/roster', upload.single("roster"), async (req, res) => {
             res.status(200).json({message: "File processed", rows: results.length})
         })
     } catch (err) {
-        return res.status(500).json({err:"Server error"})
+        return res.status(500).json({err:`Server error ${err}`})
     }
 })
 
@@ -69,17 +73,26 @@ router.get('/leaderboard/:school_id', async (req, res) => {
 
 // SQL QUERY TO GET STUDENT LEADERBOARD
 async function getLeaderboard(school_id) {
-    const leaderboard = await sql `
+    const leaderboard = await sql`
         SELECT
-            s.first_name,
-            s.last_name,
-            COALESCE(SUM(cl.amount), 0) AS total_chips
-        FROM students s
-        LEFT JOIN chip_ledger cl
-            ON cl.student_id = s.id
-        WHERE s.school_id = ${school_id}
-        GROUP BY s.id
-        ORDER BY total_chips DESC`
+            first_name,
+            last_name,
+            total_chips,
+            DENSE_RANK() OVER (ORDER BY total_chips DESC) AS rank
+        FROM (
+            SELECT
+                s.id,
+                s.first_name,
+                s.last_name,
+                COALESCE(SUM(cl.amount), 0) AS total_chips
+            FROM students s
+            LEFT JOIN chip_ledger cl
+                ON cl.student_id = s.id
+            WHERE s.school_id = ${school_id}
+            GROUP BY s.id
+        ) ranked
+        ORDER BY total_chips DESC
+    `
     return leaderboard
 }
 

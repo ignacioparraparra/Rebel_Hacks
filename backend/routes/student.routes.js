@@ -1,17 +1,28 @@
 require('dotenv').config()
 const express = require('express')
 const router = express.Router()
-
+const { authenticateToken } = require('../middlware/auth.middleware.js')
 router.use(express.json())
 
 const sql = require('../database.js')
 
 // RETURN STUDENTS CHIP COUNT
-router.get('/chips/:student_id', async (req, res) => {
+router.get('/chips', authenticateToken, async (req, res) => {
     // GET STUDENTS CHIP COUNT FROM DB
-    const {student_id} = req.params
+    const student_id = req.student_id
     const chipCount = await getChipCount(student_id)
     return res.send({chipCount})
+})
+
+// RETURN STUDENT DETAILS
+router.get('/info', authenticateToken, async (req, res) => {
+    try {
+        const student_id = req.student_id
+        const student_info = await getStudent(student_id)
+        return res.status(200).json(student_info)     
+    } catch (err) {
+        return res.status(500)
+    } 
 })
 
 // SQL QUERY TO GET STUDENTS CHIP COUNT FROM DB
@@ -24,14 +35,36 @@ async function getChipCount(student_id) {
     return chipCount
 }
 
-// SQL QUERY TO GET STUDENTS NAME 
+// SQL QUERY TO GET STUDENT + RANK
 async function getStudent(student_id) {
-    const name = await sql `
-        SELECT first_name
-        FROM students
-        WHERE id=${student_id}`
-    const first_name = name[0]['first_name']
-    return first_name
+    const result = await sql`
+        SELECT
+            first_name,
+            last_name,
+            school_id,
+            grade,
+            total_chips,
+            rank
+        FROM (
+            SELECT
+                s.id,
+                s.first_name,
+                s.last_name,
+                s.school_id,
+                s.grade,
+                COALESCE(SUM(cl.amount), 0) AS total_chips,
+                DENSE_RANK() OVER (
+                    PARTITION BY s.school_id
+                    ORDER BY COALESCE(SUM(cl.amount), 0) DESC
+                ) AS rank
+            FROM students s
+            LEFT JOIN chip_ledger cl
+                ON cl.student_id = s.id
+            GROUP BY s.id
+        ) ranked
+        WHERE id = ${student_id}
+    `
+    return result[0]
 }
 
 module.exports = router
