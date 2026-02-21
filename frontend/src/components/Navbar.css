@@ -11,9 +11,15 @@
   height: 64px;
   background: var(--gradient-nav);
   border-bottom: 2px solid var(--accent);
-  box-shadow: var(--shadow), 0 2px 0 var(--accent-glow);
+  box-shadow:
+    var(--shadow),
+    0 2px 0 var(--accent-glow);
 }
-
+.navbar-logo {
+  height: 36px;
+  width: auto;
+  object-fit: contain;
+}
 /* brand - probably should've made this an img tag but we're committed now */
 
 .element-home {
@@ -22,7 +28,9 @@
   font-weight: 800;
   color: var(--accent);
   letter-spacing: 0.5px;
-  transition: color 0.2s, text-shadow 0.2s;
+  transition:
+    color 0.2s,
+    text-shadow 0.2s;
   white-space: nowrap;
   text-shadow: 0 0 16px var(--accent-glow);
 }
@@ -56,11 +64,14 @@
   color: rgba(255, 255, 255, 0.7);
   border: 2px solid transparent;
   border-radius: var(--radius);
-  transition: color 0.2s, background 0.2s, border-color 0.2s;
+  transition:
+    color 0.2s,
+    background 0.2s,
+    border-color 0.2s;
 }
 
 .nav-link-element:hover {
-  color: #FFFFFF;
+  color: #ffffff;
   background: rgba(255, 255, 255, 0.08);
   border-color: rgba(255, 255, 255, 0.15);
 }
@@ -78,7 +89,7 @@
   align-items: center;
   padding: 0.5rem 1.25rem;
   background: var(--accent);
-  color: #FFFFFF;
+  color: #ffffff;
   font-family: var(--font-brand);
   font-size: 0.85rem;
   font-weight: 700;
@@ -87,12 +98,15 @@
   text-decoration: none;
   cursor: pointer;
   border: 2px solid var(--accent);
-  transition: background 0.15s, transform 0.15s, box-shadow 0.2s;
+  transition:
+    background 0.15s,
+    transform 0.15s,
+    box-shadow 0.2s;
 }
 
 .navbar-login-btn:hover {
-  background: #E09500;
-  color: #FFFFFF;
+  background: #e09500;
+  color: #ffffff;
   transform: translateY(-1px);
   box-shadow: var(--shadow-gold), var(--shadow-sm);
 }
@@ -135,7 +149,9 @@
     gap: 0.5rem;
   }
 
-  .navbar-toggler { display: flex; }
+  .navbar-toggler {
+    display: flex;
+  }
 
   .navbar-links {
     display: none;
@@ -146,7 +162,9 @@
     border-top: 1px solid rgba(255, 255, 255, 0.1);
   }
 
-  .navbar-links.show { display: flex; }
+  .navbar-links.show {
+    display: flex;
+  }
 
   .nav-link-element {
     width: 100%;

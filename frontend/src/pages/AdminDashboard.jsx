@@ -21,9 +21,16 @@ function AdminDashboard() {
     const fd = new FormData();
     fd.append("roster", rosterFile);
     try {
-      const res = await fetch(`${API}/school/${SCHOOL_ID}/roster`, { method: "POST", body: fd });
+      const res = await fetch(`${API}/school/${SCHOOL_ID}/roster`, {
+        method: "POST",
+        body: fd,
+      });
       const data = await res.json();
-      setRosterMsg(res.ok ? `Roster uploaded - ${data.inserted} students added` : (data.message || "Upload failed"));
+      setRosterMsg(
+        res.ok
+          ? `Roster uploaded - ${data.inserted} students added`
+          : data.message || "Upload failed",
+      );
     } catch {
       setRosterMsg("Network error");
     }
@@ -35,9 +42,16 @@ function AdminDashboard() {
     const fd = new FormData();
     fd.append("roster", attendanceFile);
     try {
-      const res = await fetch(`${API}/school/${SCHOOL_ID}/attendance`, { method: "POST", body: fd });
+      const res = await fetch(`${API}/school/${SCHOOL_ID}/attendance`, {
+        method: "POST",
+        body: fd,
+      });
       const data = await res.json();
-      setAttendanceMsg(res.ok ? `Attendance processed - ${data.total_chips_awarded} chips awarded` : (data.message || "Upload failed"));
+      setAttendanceMsg(
+        res.ok
+          ? `Attendance processed - ${data.total_chips_awarded} chips awarded`
+          : data.message || "Upload failed",
+      );
     } catch {
       setAttendanceMsg("Network error");
     }
@@ -47,13 +61,20 @@ function AdminDashboard() {
     e.preventDefault();
     if (!studentId || !chipAmount) return;
     try {
-      const res = await fetch(`${API}/transaction/chips/${SCHOOL_ID}/${studentId}`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ amount: Number(chipAmount) }),
-      });
+      const res = await fetch(
+        `${API}/transaction/chips/${SCHOOL_ID}/${studentId}`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ amount: Number(chipAmount) }),
+        },
+      );
       const data = await res.json();
-      setChipMsg(res.ok ? `Sent ${chipAmount} chips!` : (data.message || "Transaction failed"));
+      setChipMsg(
+        res.ok
+          ? `Sent ${chipAmount} chips!`
+          : data.message || "Transaction failed",
+      );
       if (res.ok) setChipAmount("");
     } catch {
       setChipMsg("Network error");
@@ -62,16 +83,24 @@ function AdminDashboard() {
 
   return (
     <div className="admin-page">
-      <h1 className="admin-title anim-fade-up">
-        admin dashboard for cool people
-      </h1>
+      <h1 className="admin-title anim-fade-up">Admin Dashboard</h1>
 
       {/* roster */}
       <section className="glass admin-section anim-fade-up anim-delay-1">
         <h2 className="section-title">Upload Roster CSV</h2>
         <form onSubmit={uploadRoster} className="admin-form">
-          <input type="file" accept=".csv" onChange={e => setRosterFile(e.target.files[0])} />
-          <button className="btn btn-primary" type="submit" disabled={!rosterFile}>Upload Roster</button>
+          <input
+            type="file"
+            accept=".csv"
+            onChange={(e) => setRosterFile(e.target.files[0])}
+          />
+          <button
+            className="btn btn-primary"
+            type="submit"
+            disabled={!rosterFile}
+          >
+            Upload Roster
+          </button>
         </form>
         {rosterMsg && <p className="admin-msg">{rosterMsg}</p>}
       </section>
@@ -80,8 +109,18 @@ function AdminDashboard() {
       <section className="glass admin-section anim-fade-up anim-delay-2">
         <h2 className="section-title">Upload Attendance CSV</h2>
         <form onSubmit={uploadAttendance} className="admin-form">
-          <input type="file" accept=".csv" onChange={e => setAttendanceFile(e.target.files[0])} />
-          <button className="btn btn-primary" type="submit" disabled={!attendanceFile}>Upload Attendance</button>
+          <input
+            type="file"
+            accept=".csv"
+            onChange={(e) => setAttendanceFile(e.target.files[0])}
+          />
+          <button
+            className="btn btn-primary"
+            type="submit"
+            disabled={!attendanceFile}
+          >
+            Upload Attendance
+          </button>
         </form>
         {attendanceMsg && <p className="admin-msg">{attendanceMsg}</p>}
       </section>
@@ -92,13 +131,31 @@ function AdminDashboard() {
         <form onSubmit={sendChips} className="admin-form">
           <label className="label">
             Student ID
-            <input className="input" type="text" value={studentId} onChange={e => setStudentId(e.target.value)} placeholder="e.g. 10001" />
+            <input
+              className="input"
+              type="text"
+              value={studentId}
+              onChange={(e) => setStudentId(e.target.value)}
+              placeholder="e.g. 10001"
+            />
           </label>
           <label className="label">
             Amount
-            <input className="input" type="number" value={chipAmount} onChange={e => setChipAmount(e.target.value)} placeholder="e.g. 50" />
+            <input
+              className="input"
+              type="number"
+              value={chipAmount}
+              onChange={(e) => setChipAmount(e.target.value)}
+              placeholder="e.g. 50"
+            />
           </label>
-          <button className="btn btn-gold" type="submit" disabled={!studentId || !chipAmount}>Send Chips</button>
+          <button
+            className="btn btn-gold"
+            type="submit"
+            disabled={!studentId || !chipAmount}
+          >
+            Send Chips
+          </button>
         </form>
         {chipMsg && <p className="admin-msg">{chipMsg}</p>}
       </section>

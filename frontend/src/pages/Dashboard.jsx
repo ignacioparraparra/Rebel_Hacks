@@ -3,35 +3,36 @@ import { Link, useNavigate } from "react-router-dom";
 import { apiFetch, getToken } from "../utils/api";
 import "./Dashboard.css";
 
-// TODO: wire up real activity feed (this data is faker than my motivation at 3am)
-const MOCK_ACTIVITY = [
-  { id: 1, desc: "Daily Attendance",      delta: +50,  time: "Today, 8:02 AM" },
-  { id: 2, desc: "Spin the Wheel",        delta: -10,  time: "Yesterday, 3:15 PM" },
-  { id: 3, desc: "Quiz Bowl - 1st Place", delta: +200, time: "Yesterday, 1:30 PM" },
-  { id: 4, desc: "Prize Redeemed: Homework Pass", delta: -15, time: "Mon, 11:45 AM" },
-  { id: 5, desc: "Daily Attendance",      delta: +50,  time: "Mon, 8:00 AM" },
-];
-
 function Dashboard() {
   const navigate = useNavigate();
   const [student, setStudent] = useState(null);
   const [chips, setChips] = useState(null);
+  const [activity, setActivity] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!getToken()) { navigate("/login"); return; }
+    if (!getToken()) {
+      navigate("/login");
+      return;
+    }
 
-    Promise.all([
-      apiFetch("/student/info"),
-      apiFetch("/student/chips"),
-    ]).then(async ([infoRes, chipsRes]) => {
-      if (!infoRes || !chipsRes) return;
-      const info = await infoRes.json();
-      const chipData = await chipsRes.json();
-      setStudent(info);
-      setChips(chipData.chipCount);
-      setLoading(false);
-    }).catch(() => setLoading(false));
+    Promise.all([apiFetch("/student/info"), apiFetch("/student/chips")])
+      .then(async ([infoRes, chipsRes]) => {
+        if (!infoRes || !chipsRes) return;
+        const info = await infoRes.json();
+        const chipData = await chipsRes.json();
+        setStudent(info);
+        setChips(chipData.current_balance);
+
+        const txRes = await apiFetch(`/transaction/chips/${info.student_id}`);
+        if (txRes) {
+          const txData = await txRes.json();
+          setActivity(Array.isArray(txData) ? txData : []);
+        }
+
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
   }, [navigate]);
 
   if (loading) {
@@ -53,23 +54,38 @@ function Dashboard() {
   const { first_name, last_name, grade, total_chips, rank } = student;
   const streak = 12; // mock
 
+  function formatTime(timestamp) {
+    const date = new Date(timestamp);
+    return date.toLocaleString("en-US", {
+      weekday: "short",
+      month: "short",
+      day: "numeric",
+      hour: "numeric",
+      minute: "2-digit",
+    });
+  }
+
   return (
     <div className="dashboard-page">
-
       {/* welcome */}
       <section className="glass-hero dash-welcome anim-fade-up">
         <div className="dash-welcome-left">
           <div className="dash-avatar">
-            {first_name[0]}{last_name[0]}
+            {first_name[0]}
+            {last_name[0]}
           </div>
           <div>
             <h1 className="dash-name">Welcome back, {first_name}.</h1>
-            <p className="dash-tagline">Grade {grade} &middot; Rank #{rank} &middot; You're on a roll.</p>
+            <p className="dash-tagline">
+              Grade {grade} &middot; Rank #{rank} &middot; You're on a roll.
+            </p>
           </div>
         </div>
         <div className="dash-chip-display">
           <span className="dash-chip-label">Your Chips</span>
-          <span className="dash-chip-count">{Number(chips).toLocaleString()}</span>
+          <span className="dash-chip-count">
+            {chips !== null ? Number(chips).toLocaleString() : "..."}
+          </span>
         </div>
       </section>
 
@@ -78,7 +94,9 @@ function Dashboard() {
         <div className="glass dash-stat dash-stat-earned">
           <i className="bi bi-graph-up-arrow dash-stat-icon"></i>
           <div className="dash-stat-body">
-            <span className="dash-stat-value">{Number(total_chips).toLocaleString()}</span>
+            <span className="dash-stat-value">
+              {Number(total_chips).toLocaleString()}
+            </span>
             <span className="dash-stat-label">Total Earned</span>
           </div>
         </div>
@@ -121,20 +139,37 @@ function Dashboard() {
       <section className="anim-fade-up anim-delay-3" style={{ width: "100%" }}>
         <h2 className="section-title">Recent Activity</h2>
         <div className="glass dash-activity-list">
-          {MOCK_ACTIVITY.map((item) => (
-            <div className="dash-activity-row" key={item.id}>
-              <div className="dash-activity-info">
-                <span className="dash-activity-desc">{item.desc}</span>
-                <span className="dash-activity-time">{item.time}</span>
-              </div>
-              <span className={`badge ${item.delta >= 0 ? "badge-pos" : "badge-neg"}`}>
-                {item.delta >= 0 ? "+" : ""}{item.delta}
+          {activity.length === 0 ? (
+            <div className="dash-activity-row">
+              <span
+                className="dash-activity-desc"
+                style={{ color: "var(--text-muted)" }}
+              >
+                No transactions yet.
               </span>
             </div>
-          ))}
+          ) : (
+            activity.slice(0, 10).map((item) => (
+              <div className="dash-activity-row" key={item.id}>
+                <div className="dash-activity-info">
+                  <span className="dash-activity-desc">
+                    {item.event_type || "Transaction"}
+                  </span>
+                  <span className="dash-activity-time">
+                    {formatTime(item.event_date)}
+                  </span>
+                </div>
+                <span
+                  className={`badge ${item.amount >= 0 ? "badge-pos" : "badge-neg"}`}
+                >
+                  {item.amount >= 0 ? "+" : ""}
+                  {item.amount}
+                </span>
+              </div>
+            ))
+          )}
         </div>
       </section>
-
     </div>
   );
 }

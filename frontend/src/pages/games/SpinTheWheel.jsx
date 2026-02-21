@@ -23,8 +23,8 @@ export default function SpinTheWheel() {
 
   return (
     <div className="stw-container">
-      <Link to="/games">
-        <button className="stw-back-btn">← Back to Games</button>
+      <Link to="/prizes">
+        <button className="stw-back-btn">← Back to Prizes</button>
       </Link>
       <h1>Spin the Wheel</h1>
       <Wheel

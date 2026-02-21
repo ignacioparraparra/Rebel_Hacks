@@ -26,22 +26,24 @@ function LayoutRoute() {
 function App() {
   return (
     <>
-        <Navbar />
-        <Routes>
-          {/* no layout */}
-          <Route path="/" element={<Landing />} />
-          <Route path="/login" element={<Login />} />
+      <Navbar />
+      <Routes>
+        {/* no layout */}
+        <Route path="/" element={<Landing />} />
+        <Route path="/login" element={<Login />} />
 
-          {/* with layout */}
-          <Route element={<LayoutRoute />}>
-            <Route path="/dashboard" element={<Dashboard />} />
+        {/* with layout */}
+        <Route element={<LayoutRoute />}>
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/prizes" element={<Prizes />} />
-          <Route path="/leaderboard" element= {<Leaderboard/>}></Route>
-            <Route path="/admin" element={<AdminDashboard />} />
-            <Route path="/classes" element={<Classes />} />
-            <Route path="*" element={<ErrorBoundary />} />
-          </Route>
-        </Routes>
+          <Route path="/leaderboard" element={<Leaderboard />}></Route>
+
+          <Route path="/games/spin-the-wheel" element={<SpinTheWheel />} />
+          <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/classes" element={<Classes />} />
+          <Route path="*" element={<ErrorBoundary />} />
+        </Route>
+      </Routes>
     </>
   );
 }

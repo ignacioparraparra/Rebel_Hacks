@@ -21,24 +21,41 @@ function Navbar() {
   return (
     <nav className="navbar">
       {/* logo */}
-      <NavLink to="/dashboard" className={navClass} end><h1 className="element-home">scholar<span className="landing-logo-accent">Chips</span></h1></NavLink>
+      <NavLink to="/dashboard" className={navClass} end>
+        <h1 className="element-home">
+          scholar<span className="landing-logo-accent">Chips</span>
+        </h1>
+      </NavLink>
 
       <button className="navbar-toggler" onClick={() => setMenuOpen(!menuOpen)}>
         <span className="navbar-toggler-icon"></span>
       </button>
 
       <div className={`navbar-links ${menuOpen ? "show" : ""}`}>
-        <NavLink to="/dashboard" className={navClass} end onClick={close}><div className="nav-link-element">Dashboard</div></NavLink>
-        <NavLink to="/prizes" className={navClass} onClick={close}><div className="nav-link-element">Prizes</div></NavLink>
+        <NavLink to="/dashboard" className={navClass} end onClick={close}>
+          <div className="nav-link-element">Dashboard</div>
+        </NavLink>
+        <NavLink to="/prizes" className={navClass} onClick={close}>
+          <div className="nav-link-element">Prizes</div>
+        </NavLink>
         {/* <NavLink to="/classes" className={navClass}><div className="nav-link-element">Classes</div></NavLink> */}
-        <NavLink to="/leaderboard" className={navClass} onClick={close}><div className="nav-link-element">Leaderboard</div></NavLink>
-        <NavLink to="/admin" className={navClass} onClick={close}><div className="nav-link-element">Admin</div></NavLink>
+        <NavLink to="/leaderboard" className={navClass} onClick={close}>
+          <div className="nav-link-element">Leaderboard</div>
+        </NavLink>
+        <NavLink to="/admin" className={navClass} onClick={close}>
+          <div className="nav-link-element">Admin</div>
+        </NavLink>
       </div>
 
-      {loggedIn
-        ? <button className="navbar-login-btn" onClick={handleLogout}>Logout</button>
-        : <a href="/login" className="navbar-login-btn">Login</a>
-      }
+      {loggedIn ? (
+        <button className="navbar-login-btn" onClick={handleLogout}>
+          Logout
+        </button>
+      ) : (
+        <a href="/login" className="navbar-login-btn">
+          Login
+        </a>
+      )}
     </nav>
   );
 }

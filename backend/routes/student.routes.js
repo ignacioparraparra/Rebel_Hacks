@@ -1,33 +1,33 @@
-require('dotenv').config()
-const express = require('express')
-const router = express.Router()
-const { authenticateToken } = require('../middlware/auth.middleware.js')
-router.use(express.json())
+require("dotenv").config();
+const express = require("express");
+const router = express.Router();
+const { authenticateToken } = require("../middlware/auth.middleware.js");
+router.use(express.json());
 
-const sql = require('../database.js')
+const sql = require("../database.js");
 
 // RETURN STUDENTS CHIP COUNT
-router.get('/chips', authenticateToken, async (req, res) => {
-    // GET STUDENTS CHIP COUNT FROM DB
-    const student_id = req.student_id
-    const chipCount = await getChipCount(student_id)
-    return res.send(chipCount)
-})
+router.get("/chips", authenticateToken, async (req, res) => {
+  // GET STUDENTS CHIP COUNT FROM DB
+  const student_id = req.student_id;
+  const chipCount = await getChipCount(student_id);
+  return res.send(chipCount);
+});
 
 // RETURN STUDENT DETAILS
-router.get('/info', authenticateToken, async (req, res) => {
-    try {
-        const student_id = req.student_id
-        const student_info = await getStudent(student_id)
-        return res.status(200).json(student_info)     
-    } catch (err) {
-        return res.status(500)
-    } 
-})
+router.get("/info", authenticateToken, async (req, res) => {
+  try {
+    const student_id = req.student_id;
+    const student_info = await getStudent(student_id);
+    return res.status(200).json(student_info);
+  } catch (err) {
+    return res.status(500);
+  }
+});
 
 // SQL QUERY TO GET STUDENTS CHIP COUNT FROM DB
 async function getChipCount(student_id) {
-    const chipField = await sql `
+  const chipField = await sql`
         SELECT
             cl.student_id,
             COALESCE(SUM(CASE WHEN cl.amount > 0 THEN cl.amount ELSE 0 END), 0) AS lifetime_chips_earned,
@@ -35,15 +35,16 @@ async function getChipCount(student_id) {
             COALESCE(SUM(cl.amount), 0) AS current_balance
             FROM chip_ledger cl
             WHERE cl.student_id = ${student_id}
-            GROUP BY cl.student_id`
-    const chipCount = chipField[0]
-    return chipCount
+            GROUP BY cl.student_id`;
+  const chipCount = chipField[0];
+  return chipCount;
 }
 
 // SQL QUERY TO GET STUDENT + RANK
 async function getStudent(student_id) {
-    const result = await sql`
+  const result = await sql`
         SELECT
+            id AS student_id,  -- add this
             first_name,
             last_name,
             school_id,
@@ -68,8 +69,8 @@ async function getStudent(student_id) {
             GROUP BY s.id
         ) ranked
         WHERE id = ${student_id}
-    `
-    return result[0]
+    `;
+  return result[0];
 }
 
-module.exports = router
+module.exports = router;
