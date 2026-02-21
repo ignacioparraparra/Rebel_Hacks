@@ -56,9 +56,11 @@ function Prizes() {
       );
       return;
     }
-
-    const { student_id } = student;
-
+    console.log(student.student_id)
+    const { id } = student;
+    console.log(id)
+    const studentData = await apiFetch(`/student/${id}`)
+    console.log(studentData)
     await apiFetch(`/transaction/chips/${student_id}`, {
       method: "POST",
       body: JSON.stringify({ amount: -item.cost }),
