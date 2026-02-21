@@ -12,6 +12,7 @@ import Classes from "./pages/Classes.jsx";
 import Login from "./pages/Login.jsx";
 import ErrorBoundary from "./pages/ErrorBoundary.jsx";
 import AdminDashboard from "./pages/AdminDashboard.jsx";
+import Other from "./pages/Other.jsx";
 
 // wrapper
 function LayoutRoute() {
@@ -35,9 +36,10 @@ function App() {
         <Route element={<LayoutRoute />}>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/prizes" element={<Prizes />} />
-          <Route path="/leaderboard" element={<Leaderboard />}></Route>
+          <Route path="/leaderboard" element={<Leaderboard />} />
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/classes" element={<Classes />} />
+          <Route path="/other" element={<Other />} />
           <Route path="*" element={<ErrorBoundary />} />
         </Route>
       </Routes>

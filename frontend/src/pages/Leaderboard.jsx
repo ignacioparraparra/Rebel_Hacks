@@ -1,14 +1,23 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { getToken } from "../utils/api";
 import "./Leaderboard.css";
 
 function Leaderboard() {
+  const navigate = useNavigate();
   const [leaderboard, setLeaderboard] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const isAdmin = localStorage.getItem("username") === "admin";
   const school_id = 2;
 
   useEffect(() => {
+    if (!isAdmin && !getToken()) {
+      navigate("/login");
+      return;
+    }
+
     async function fetchLeaderboard() {
       try {
         const res = await fetch(
@@ -25,7 +34,8 @@ function Leaderboard() {
     }
 
     fetchLeaderboard();
-  }, []);
+  }, [navigate, isAdmin]);
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
 
