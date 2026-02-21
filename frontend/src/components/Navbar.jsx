@@ -8,10 +8,10 @@ const navClass = ({ isActive }) => (isActive ? "nav-link active" : "nav-link");
 function Navbar() {
   return (
     <nav className="navbar">
-      {/* Brand / logo — left side */}
-      <NavLink to="/" className={navClass} end><h1 className="nav-link-element element-home">scholarChips</h1></NavLink>
+      {/* Logo / home link - left side */}
+      <NavLink to="/dashboard" className={navClass} end><h1 className="nav-link-element element-home">scholarChips</h1></NavLink>
 
-      {/* Page links — centre */}
+      {/* Page links - center */}
       <div className="navbar-links">
         {/* `end` on Home means it only highlights on exactly "/",
             not on every page (because every path starts with /) */}
@@ -20,7 +20,7 @@ function Navbar() {
         <NavLink to="/classes" className={navClass}><div className="nav-link-element">Classes</div></NavLink>
       </div>
 
-      {/* Login button — right side */}
+      {/* login button - right side */}
       <a href="/login" className="navbar-login-btn">Login</a>
     </nav>
   );

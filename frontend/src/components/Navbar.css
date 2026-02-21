@@ -1,16 +1,15 @@
-/* ── Global CSS variables ── */
-/* These are used across the whole app. Define them once here on :root
-     so every component can use them via var(--gold) etc. */
+/* global styles*/
 :root {
     --gold: #ffd700;
     --gold-light: #ffe44d;
     --font-brand: 'Chela One', system-ui, sans-serif;
-    --bg: white;
+    --bg: #FFF;
     --text: #f0f0f0;
     --text-muted: #aaaaaa;
 }
 
-/* ── Navbar ── */
+/*navbar*/
+
 .navbar {
     display: flex;
     align-items: center;
