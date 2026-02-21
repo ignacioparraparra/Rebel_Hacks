@@ -15,11 +15,13 @@
     var(--shadow),
     0 2px 0 var(--accent-glow);
 }
+
 .navbar-logo {
   height: 36px;
   width: auto;
   object-fit: contain;
 }
+
 /* brand - probably should've made this an img tag but we're committed now */
 
 .element-home {
@@ -139,6 +141,24 @@
   background-size: 100%;
 }
 
+/* desktop left/right slots */
+
+.navbar-left,
+.navbar-right {
+  flex: 1;
+}
+
+.navbar-right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* mobile auth button inside hamburger - hidden on desktop */
+
+.navbar-mobile-auth {
+  display: none;
+}
+
 /* responsive */
 
 @media (max-width: 768px) {
@@ -153,9 +173,15 @@
     display: flex;
   }
 
+  /* hide the desktop auth button on mobile */
+  .navbar-right {
+    display: none;
+  }
+
   .navbar-links {
     display: none;
     flex-direction: column;
+    align-items: flex-start;
     width: 100%;
     gap: 0.25rem;
     padding: 0.75rem 0;
@@ -166,23 +192,24 @@
     display: flex;
   }
 
+  .nav-link {
+    width: 100%;
+  }
+
   .nav-link-element {
     width: 100%;
-    text-align: center;
+    text-align: left;
   }
 
-  .navbar-login-btn {
+  /* show the in-menu auth button and make it full width */
+  .navbar-mobile-auth {
+    display: block;
     width: 100%;
-    justify-content: center;
     margin-top: 0.25rem;
   }
-}
-.navbar-left,
-.navbar-right {
-  flex: 1;
-}
 
-.navbar-right {
-  display: flex;
-  justify-content: flex-end;
+  .navbar-mobile-auth .navbar-login-btn {
+    width: 100%;
+    justify-content: center;
+  }
 }

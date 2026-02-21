@@ -45,8 +45,22 @@ function Navbar() {
         <NavLink to="/admin" className={navClass} onClick={close}>
           <div className="nav-link-element">Admin</div>
         </NavLink>
+
+        {/* logout lives here on mobile, hidden via CSS on desktop */}
+        <div className="navbar-mobile-auth">
+          {loggedIn ? (
+            <button className="navbar-login-btn" onClick={handleLogout}>
+              Logout
+            </button>
+          ) : (
+            <a href="/login" className="navbar-login-btn">
+              Login
+            </a>
+          )}
+        </div>
       </div>
 
+      {/* desktop-only auth button */}
       <div className="navbar-right">
         {loggedIn ? (
           <button className="navbar-login-btn" onClick={handleLogout}>
