@@ -118,12 +118,8 @@ function Dashboard() {
 
       {/* actions */}
       <section className="anim-fade-up anim-delay-2" style={{ width: "100%" }}>
-        <h2 className="section-title">Quick Actions</h2>
-        <div className="grid-3">
-          <Link to="/games/spin-the-wheel" className="glass dash-action">
-            <i className="bi bi-bullseye"></i>
-            <span>Spin the Wheel</span>
-          </Link>
+        <h2 className="section-title-dashboard">Quick Actions</h2>
+        <div className="grid-2">
           <Link to="/prizes" className="glass dash-action">
             <i className="bi bi-shop-window"></i>
             <span>Prize Shop</span>
@@ -137,7 +133,7 @@ function Dashboard() {
 
       {/* activity */}
       <section className="anim-fade-up anim-delay-3" style={{ width: "100%" }}>
-        <h2 className="section-title">Recent Activity</h2>
+        <h2 className="section-title-dashboard">Recent Activity</h2>
         <div className="glass dash-activity-list">
           {activity.length === 0 ? (
             <div className="dash-activity-row">

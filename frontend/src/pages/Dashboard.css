@@ -5,14 +5,22 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.25rem;
+  gap: 2rem;
   max-width: 900px;
   margin: 0 auto;
   width: 100%;
 }
 
 /* welcome */
-
+.section-title-dashboard {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+  font-weight: 800;
+  font-family: var(--font-brand);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
 .dash-welcome {
   display: flex;
   align-items: center;
@@ -32,7 +40,12 @@
 .dash-welcome::before {
   display: none;
 }
-
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  width: 100%;
+}
 .dash-welcome-left {
   display: flex;
   align-items: center;
