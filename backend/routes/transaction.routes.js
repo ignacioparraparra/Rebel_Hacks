@@ -5,25 +5,27 @@ const router = express.Router();
 router.use(express.json());
 
 const sql = require("../database.js");
+const SCHOOL_ID = 2;
 
 // CREATE CHIP TRANSACTION
-router.post("/chips/:school_id", async (req, res) => {
-  const {school_id} = req.params
+router.post("/chips/:student_id", async (req, res) => {
+  const { student_id } = req.params;
+  const { amount } = req.body;
 
-  const student_id = req.body.student_id;
+  try {
+    const db_id = await sql`
+      SELECT id FROM students
+      WHERE student_id = ${student_id} AND school_id = ${SCHOOL_ID}`;
 
-  db_id = await sql `
-    SELECT id
-    FROM students
-    WHERE student_id = ${student_id} AND school_id = ${school_id}`
+    if (!db_id.length)
+      return res.status(404).json({ message: "Student not found" });
 
-  const clean_id = db_id[0]['id']
-
-  const amount = req.body.amount;
-
-  await createChipTransaction(clean_id, school_id, amount);
-
-  return res.status(200).json({ chips_added: amount });
+    await createChipTransaction(db_id[0].id, SCHOOL_ID, amount);
+    return res.status(200).json({ chips_added: amount });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ message: "Transaction failed" });
+  }
 });
 
 // GET ALL TRANSACTIONS FOR A SPECIFIC STUDENT

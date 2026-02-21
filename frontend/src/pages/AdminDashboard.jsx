@@ -61,14 +61,11 @@ function AdminDashboard() {
     e.preventDefault();
     if (!studentId || !chipAmount) return;
     try {
-      const res = await fetch(
-        `${API}/transaction/chips/${SCHOOL_ID}/${studentId}`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ amount: Number(chipAmount) }),
-        },
-      );
+      const res = await fetch(`${API}/transaction/chips/${studentId}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ amount: Number(chipAmount) }),
+      });
       const data = await res.json();
       setChipMsg(
         res.ok
@@ -127,7 +124,7 @@ function AdminDashboard() {
 
       {/* chips */}
       <section className="glass admin-section anim-fade-up anim-delay-3">
-        <h2 className="section-title">Award SHMONEY</h2>
+        <h2 className="section-title">Award Chips for Good Behavior</h2>
         <form onSubmit={sendChips} className="admin-form">
           <label className="label">
             Student ID
