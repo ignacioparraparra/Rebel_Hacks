@@ -7,7 +7,12 @@
   position: relative;
   overflow-y: scroll;
 }
-
+.login-logo {
+  height: 90px;
+  width: auto;
+  object-fit: contain;
+  margin-bottom: 0.5rem;
+}
 .login-bg::before {
   content: "";
   position: absolute;
@@ -15,7 +20,7 @@
   background: linear-gradient(
     180deg,
     rgba(0, 43, 73, 0.65) 0%,
-    rgba(0, 43, 73, 0.80) 60%,
+    rgba(0, 43, 73, 0.8) 60%,
     rgba(0, 43, 73, 0.95) 100%
   );
   z-index: 0;
@@ -33,22 +38,34 @@
   box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
 }
 
-.login-bg .login-title  { color: #FFFFFF; }
-.login-bg .login-sub    { color: rgba(255, 255, 255, 0.55); }
-.login-bg .label        { color: rgba(255, 255, 255, 0.75); }
-.login-bg .input        {
+.login-bg .login-title {
+  color: #ffffff;
+}
+.login-bg .login-sub {
+  color: rgba(255, 255, 255, 0.55);
+}
+.login-bg .label {
+  color: rgba(255, 255, 255, 0.75);
+}
+.login-bg .input {
   background: rgba(255, 255, 255, 0.08);
   border-color: rgba(255, 255, 255, 0.15);
-  color: #FFFFFF;
+  color: #ffffff;
 }
-.login-bg .input:focus  {
+.login-bg .input:focus {
   border-color: var(--accent);
   background: rgba(255, 255, 255, 0.12);
   outline: none;
 }
-.login-bg .input::placeholder { color: rgba(255, 255, 255, 0.30); }
-.login-bg .login-back-btn { color: rgba(255, 255, 255, 0.45); }
-.login-bg .login-back-btn:hover { color: var(--accent); }
+.login-bg .input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+.login-bg .login-back-btn {
+  color: rgba(255, 255, 255, 0.45);
+}
+.login-bg .login-back-btn:hover {
+  color: var(--accent);
+}
 
 .login-back-btn {
   color: var(--text-muted);
@@ -106,6 +123,10 @@
 }
 
 @media (max-width: 480px) {
-  .login-card { padding: 2rem 1.5rem; }
-  .login-title { font-size: 1.8rem; }
+  .login-card {
+    padding: 2rem 1.5rem;
+  }
+  .login-title {
+    font-size: 1.8rem;
+  }
 }

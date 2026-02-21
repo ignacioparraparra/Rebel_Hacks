@@ -39,10 +39,15 @@ function Login() {
   }
 
   return (
-    <div className="center-page login-bg" style={{ backgroundImage: `url(${heroImg})` }}>
+    <div
+      className="center-page login-bg"
+      style={{ backgroundImage: `url(${heroImg})` }}
+    >
       <form className="login-card anim-fade-up" onSubmit={handleSubmit}>
-        <Link to="/" className="login-back-btn"><i className="bi bi-arrow-left"></i> Back</Link>
-        <h1 className="login-title">scholarChips</h1>
+        <Link to="/" className="login-back-btn">
+          <i className="bi bi-arrow-left"></i> Back
+        </Link>
+        <img src="/artboard.png" alt="scholarChips" className="login-logo" />
         <p className="login-sub">Sign in to your account</p>
 
         {error && <div className="error-box">{error}</div>}
@@ -70,7 +75,11 @@ function Login() {
           />
         </label>
 
-        <button className="btn btn-primary login-btn" type="submit" disabled={loading}>
+        <button
+          className="btn btn-primary login-btn"
+          type="submit"
+          disabled={loading}
+        >
           {loading ? "Signing in…" : "Sign In"}
         </button>
       </form>

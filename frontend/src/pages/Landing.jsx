@@ -5,21 +5,25 @@ import heroImg from "../assets/lasvegas.jpg";
 function Landing() {
   return (
     <div className="landing-page">
-
       {/* hero - vegas parallax */}
-      <section className="landing-hero" style={{ backgroundImage: `url(${heroImg})` }}>
+      <section
+        className="landing-hero"
+        style={{ backgroundImage: `url(${heroImg})` }}
+      >
         <div className="landing-hero-overlay">
           <div className="landing-hero-content">
             <span className="landing-chip-badge">
               <i className="bi bi-star-fill"></i> Earn, Compete, and Win!
             </span>
-            <h1 className="landing-logo">
-              scholar<span className="landing-logo-accent">Chips</span>
-            </h1>
+            <img
+              src="/artboard.png"
+              alt="scholarChips"
+              className="landing-logo-img"
+            />
             <p className="landing-tagline">
-              Show up, earn chips, climb the leaderboard, and cash in for real prizes.
-              Just showing up's half the battle!
-              <br/>
+              Show up, earn chips, climb the leaderboard, and cash in for real
+              prizes. Just showing up's half the battle!
+              <br />
               ScholarChips turns attendance into a game worth playing.
             </p>
             <div className="landing-hero-actions">
@@ -57,7 +61,7 @@ function Landing() {
         <h2>Why scholarChips?</h2>
         <p className="landing-section-sub">
           CCSD student absenteeism hit 40% in 2022 and still sits near 27%.
-          <br/>
+          <br />
           We're here to fix that!
         </p>
         <div className="landing-cards">
@@ -80,7 +84,10 @@ function Landing() {
               <i className="bi bi-gift-fill"></i>
             </div>
             <h3>Real Rewards</h3>
-            <p>Food vouchers, school merch, supplies, books, and more in the prize shop!</p>
+            <p>
+              Food vouchers, school merch, supplies, books, and more in the
+              prize shop!
+            </p>
           </div>
         </div>
       </section>
@@ -90,22 +97,36 @@ function Landing() {
         <h2>How it works</h2>
         <div className="landing-divdiv-waow">
           <div className="dumbCircle">
-            <div className="landing-how-icon"><i className="bi bi-person-plus-fill"></i></div>
+            <div className="landing-how-icon">
+              <i className="bi bi-person-plus-fill"></i>
+            </div>
             <span>Join your class</span>
           </div>
-          <div className="stupidArrow"><i className="bi bi-arrow-right"></i></div>
+          <div className="stupidArrow">
+            <i className="bi bi-arrow-right"></i>
+          </div>
           <div className="dumbCircle">
-            <div className="landing-how-icon"><i className="bi bi-calendar-check-fill"></i></div>
+            <div className="landing-how-icon">
+              <i className="bi bi-calendar-check-fill"></i>
+            </div>
             <span>Show up daily</span>
           </div>
-          <div className="stupidArrow"><i className="bi bi-arrow-right"></i></div>
+          <div className="stupidArrow">
+            <i className="bi bi-arrow-right"></i>
+          </div>
           <div className="dumbCircle">
-            <div className="landing-how-icon"><i className="bi bi-coin"></i></div>
+            <div className="landing-how-icon">
+              <i className="bi bi-coin"></i>
+            </div>
             <span>Stack chips</span>
           </div>
-          <div className="stupidArrow"><i className="bi bi-arrow-right"></i></div>
+          <div className="stupidArrow">
+            <i className="bi bi-arrow-right"></i>
+          </div>
           <div className="dumbCircle">
-            <div className="landing-how-icon"><i className="bi bi-bag-check-fill"></i></div>
+            <div className="landing-how-icon">
+              <i className="bi bi-bag-check-fill"></i>
+            </div>
             <span>Win prizes</span>
           </div>
         </div>
@@ -115,10 +136,9 @@ function Landing() {
       <section className="landing-section landing-footer-cta">
         <h2>Ready to start earning?</h2>
         <Link to="/login" className="btn btn-gold landing-cta">
-          Create an Account <i className="bi bi-arrow-right"></i>
+          Sign In <i className="bi bi-arrow-right"></i>
         </Link>
       </section>
-
     </div>
   );
 }

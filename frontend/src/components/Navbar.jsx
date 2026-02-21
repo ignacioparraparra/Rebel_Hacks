@@ -8,7 +8,7 @@ const navClass = ({ isActive }) => (isActive ? "nav-link active" : "nav-link");
 
 function Navbar() {
   const navigate = useNavigate();
-  const loggedIn = !!getToken(); // if token exists we pretend the user is real
+  const loggedIn = !!getToken();
   const [menuOpen, setMenuOpen] = useState(false);
 
   function handleLogout() {
@@ -21,10 +21,16 @@ function Navbar() {
   return (
     <nav className="navbar">
       <div className="navbar-left">
-        <NavLink to="/dashboard" className={navClass} end>
-          <h1 className="element-home">
-            scholar<span className="landing-logo-accent">Chips</span>
-          </h1>
+        <NavLink
+          to={loggedIn ? "/dashboard" : "/"}
+          className="navbar-logo-link"
+          end
+        >
+          <img
+            src="/artboard-simple.png"
+            alt="scholarChips"
+            className="navbar-logo"
+          />
         </NavLink>
       </div>
 
