@@ -8,7 +8,6 @@ const {
   createChipTransaction: createChipTransaction,
 } = require("./transaction.routes.js");
 
-const app = express();
 const upload = multer({ dest: "uploads/" });
 router.use(express.json());
 

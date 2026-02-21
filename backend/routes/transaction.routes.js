@@ -7,11 +7,21 @@ router.use(express.json());
 const sql = require("../database.js");
 
 // CREATE CHIP TRANSACTION
-router.post("/chips/:school_id/:student_id", async (req, res) => {
-  const { school_id, student_id } = req.params;
+router.post("/chips/:school_id", async (req, res) => {
+  const {school_id} = req.params
+
+  const student_id = req.body.student_id;
+
+  db_id = await sql `
+    SELECT id
+    FROM students
+    WHERE student_id = ${student_id} AND school_id = ${school_id}`
+
+  const clean_id = db_id[0]['id']
+
   const amount = req.body.amount;
 
-  await createChipTransaction(student_id, school_id, amount);
+  await createChipTransaction(clean_id, school_id, amount);
 
   return res.status(200).json({ chips_added: amount });
 });
